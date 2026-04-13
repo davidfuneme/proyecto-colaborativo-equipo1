@@ -1,66 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NKD Cyber-Ride | Uber Moto</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body { margin: 0; overflow: hidden; background: #050505; font-family: 'Segoe UI', sans-serif; }
-        .ui-panel {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-            color: #00f2ff;
-            text-shadow: 0 0 10px #00f2ff;
-            pointer-events: none;
-        }
-        .btn-container {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 100;
-        }
-        .nkd-btn {
-            background: transparent;
-            border: 2px solid #ff0055;
-            color: #ff0055;
-            padding: 12px 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-        }
-        .nkd-btn:hover {
-            background: #ff0055;
-            color: white;
-            box-shadow: 0 0 30px #ff0055;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Runner 3D PRO</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<style>
+body { margin:0; overflow:hidden; background:black; }
+#ui {
+ position:absolute; top:15px; left:50%; transform:translateX(-50%);
+ color:white; font-family:Arial; text-align:center;
+}
+#score {
+ position:absolute; top:15px; right:20px;
+ color:#00ffcc; font-size:20px; font-family:Arial;
+}
+</style>
 </head>
 <body>
-    <h1>Nuestro Equipo</h1>
 
-    <div class="contenedor">
+<div id="ui">
+<h1>🚗 CAR RUNNER PRO (GTA STYLE)</h1>
+<p>A / D para moverte</p>
+</div>
 
-        <div style="background:white; padding:20px; border-radius:10px; width:200px; box-shadow: 2px 2px 8px #ccc;">
-            <h2>David Santiago Funeme Gavilán</h2>
-            <p>💻 Habilidad: Desarrollo Web</p>
-        </div>
+<div id="score">Puntaje: 0</div>
 
-        <div style="background:white; padding:20px; border-radius:10px; width:200px; box-shadow: 2px 2px 8px #ccc;">
-            <h2>María Paula Quevedo</h2>
-            <p>🏍️ Rol: Conductora Motouber</p>
-            <p>⚡ Habilidad: Conducción rápida y segura</p>
-        </div>
+<audio id="engineSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c1f8c1d9b.mp3?filename=car-engine-112605.mp3" loop></audio>
 
-    </div>
+<script>
+// ESCENA
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x000000, 15, 80);
 
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// LUCES
+scene.add(new THREE.AmbientLight(0xffffff,0.4));
+const light = new THREE.DirectionalLight(0xffffff,1);
+light.position.set(5,10,5);
+scene.add(light);
+
+// CARRETERA
+const road = new THREE.Mesh(
+ new THREE.PlaneGeometry(12,300),
+ new THREE.MeshStandardMaterial({color:0x0a0a0a})
+);
+road.rotation.x = -Math.PI/2;
+scene.add(road);
+
+// LÍNEAS
+const lines = [];
+for(let i=0;i<20;i++){
+ let line = new THREE.Mesh(
+   new THREE.BoxGeometry(0.2,0.05,2),
+   new THREE.MeshStandardMaterial({color:0xffffff})
+ );
+ line.position.set(0,0.05,-i*10);
+ scene.add(line);
+ lines.push(line);
+}
+
+// === FERRARI REAL ===
+let car;
+const loader = new THREE.GLTFLoader();
+
+loader.load(
+ 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/models/gltf/Ferrari.glb',
+ function(gltf){
+   car = gltf.scene;
+   car.scale.set(0.8,0.8,0.8);
+   car.position.set(0,0.3,0);
+   scene.add(car);
+
+   // sonido
+   document.getElementById('engineSound').play();
+ },
+ undefined,
+ function(e){ console.error("Error cargando Ferrari", e); }
+);
+
+// OBSTÁCULOS
+let obstacles = [];
+function spawnObstacle(){
+ const obs = new THREE.Mesh(
+   new THREE.CylinderGeometry(0.5,0.5,2,16),
+   new THREE.MeshStandardMaterial({color:0xff0000})
+ );
+ obs.position.set((Math.random()-0.5)*8,1,-80);
+ scene.add(obs);
+ obstacles.push(obs);
+}
+setInterval(spawnObstacle, 1000);
+
+// CONTROLES
+let targetX = 0;
+let keys = {};
+document.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
+document.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
+
+camera.position.set(0,4,6);
+
+// PUNTAJE
+let score = 0;
+const scoreUI = document.getElementById('score');
+
+// REINICIO
+function resetGame(){
+ if(car){
+   car.position.set(0,0.3,0);
+   targetX = 0;
+ }
+ obstacles.forEach(o => scene.remove(o));
+ obstacles = [];
+ score = 0;
+}
+
+// ANIMACIÓN
+function animate(){
+ requestAnimationFrame(animate);
+
+ if(keys['a']) targetX -= 0.2;
+ if(keys['d']) targetX += 0.2;
+
+ targetX = Math.max(-5, Math.min(5, targetX));
+
+ if(car){
+   car.position.x += (targetX - car.position.x)*0.1;
+ }
+
+ // aumentar puntaje
+ score += 0.1;
+ scoreUI.innerText = "Puntaje: " + Math.floor(score);
+
+ // sonido dinámico
+ const sound = document.getElementById('engineSound');
+ sound.playbackRate = 1 + Math.abs(targetX)*0.1;
+
+ road.position.z += 1;
+ if(road.position.z > 0) road.position.z = -150;
+
+ lines.forEach(l=>{
+   l.position.z += 1;
+   if(l.position.z > 5) l.position.z = -200;
+ });
+
+ obstacles.forEach((obs,i)=>{
+   obs.position.z += 1;
+
+   if(car && obs.position.distanceTo(car.position) < 1.5){
+     resetGame();
+   }
+
+   if(obs.position.z > 5){
+     scene.remove(obs);
+     obstacles.splice(i,1);
+   }
+ });
+
+ camera.lookAt(car ? car.position : new THREE.Vector3());
+ renderer.render(scene,camera);
+}
+animate();
+
+// RESPONSIVE
+window.addEventListener('resize',()=>{
+ camera.aspect = window.innerWidth/window.innerHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
+</script>
 </body>
 </html>
