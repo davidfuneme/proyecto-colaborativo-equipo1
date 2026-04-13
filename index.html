@@ -2,11 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de Equipo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NKD Cyber-Ride | Uber Moto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #f0f0f0; }
-        h1 { color: #333; }
-        .contenedor { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+        body { margin: 0; overflow: hidden; background: #050505; font-family: 'Segoe UI', sans-serif; }
+        .ui-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            color: #00f2ff;
+            text-shadow: 0 0 10px #00f2ff;
+            pointer-events: none;
+        }
+        .btn-container {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+        .nkd-btn {
+            background: transparent;
+            border: 2px solid #ff0055;
+            color: #ff0055;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+        }
+        .nkd-btn:hover {
+            background: #ff0055;
+            color: white;
+            box-shadow: 0 0 30px #ff0055;
+        }
     </style>
 </head>
 <body>
