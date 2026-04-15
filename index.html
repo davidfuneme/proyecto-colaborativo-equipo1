@@ -1,9 +1,201 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Motouber — Mototaxi inteligente</title>
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+.mu-hero-left,
+.mu-hero-right,
+.mu-section,
+.mu-driver-card,
+.mu-test-card,
+.mu-plan,
+.mu-feat,
+.mu-app-metric{
+  animation:fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.mu-driver-card,
+.mu-test-card,
+.mu-plan,
+.mu-feat{
+  transition:all 0.3s ease;
+}
+
+.mu-driver-card:hover,
+.mu-test-card:hover,
+.mu-plan:hover,
+.mu-feat:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+.mu-btn-orange,
+.mu-btn-solid,
+.mu-btn-ghost,
+.mu-plan-btn,
+.mu-pbtn,
+.mu-store-btn{
+  transition:all 0.3s ease;
+}
+
+.mu-btn-orange:hover,
+.mu-btn-solid:hover,
+.mu-btn-ghost:hover,
+.mu-plan-btn:hover,
+.mu-pbtn:hover,
+.mu-store-btn:hover{
+  transform:translateY(-3px) scale(1.03);
+}
+
+.mu-logo-mark{
+  animation:floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo{
+  0%{transform:translateY(0px)}
+  50%{transform:translateY(-5px)}
+  100%{transform:translateY(0px)}
+}
+
+.mu-phone-frame{
+  animation:phoneFloat 4s ease-in-out infinite;
+  box-shadow:0 30px 60px rgba(0,0,0,0.4);
+}
+
+@keyframes phoneFloat{
+  0%{transform:translateY(0px)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0px)}
+}
+
+.mu-hero::before{
+  content:"";
+  position:absolute;
+  top:-200px;
+  right:-200px;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0) 70%);
+  pointer-events:none;
+}
+
+.mu-hero{
+  position:relative;
+}
+
+.mu-stat-num{
+  animation:pulseStat 2s infinite;
+}
+
+@keyframes pulseStat{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+.mu-driver-avatar{
+  transition:all 0.3s ease;
+}
+
+.mu-driver-card:hover .mu-driver-avatar{
+  transform:scale(1.12) rotate(5deg);
+}
+
+.mu-test-card:hover .mu-test-av{
+  transform:rotate(10deg) scale(1.1);
+}
+
+.mu-test-av{
+  transition:all 0.3s ease;
+}
+
+.mu-nav{
+  backdrop-filter:blur(10px);
+}
+
+@media(max-width:900px){
+  .mu-hero-grid,
+  .mu-how,
+  .mu-app-inner,
+  .mu-footer-top,
+  .mu-driver-grid,
+  .mu-test-grid,
+  .mu-plans,
+  .mu-features,
+  .mu-stats{
+    grid-template-columns:1fr !important;
+  }
+
+  .mu-nav{
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .mu-nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .mu-hero-h1{
+    font-size:38px;
+  }
+
+  .mu-section-h2,
+  .mu-app-h2,
+  .mu-cta h2{
+    font-size:30px;
+  }
+}
+```
+
+2. Luego, al final de tu JavaScript antes de </script>, pega esto:
+
+```javascript
+const revealItems = document.querySelectorAll('.mu-feat, .mu-driver-card, .mu-test-card, .mu-plan, .mu-app-metric');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0px)';
+    }
+  });
+}, { threshold: 0.2 });
+
+revealItems.forEach(item => {
+  item.style.opacity = '0';
+  item.style.transform = 'translateY(40px)';
+  item.style.transition = 'all 0.8s ease';
+  observer.observe(item);
+});
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+  button.addEventListener('mouseenter', () => {
+    button.style.boxShadow = '0 10px 25px rgba(245,166,35,0.35)';
+  });
+
+  button.addEventListener('mouseleave', () => {
+    button.style.boxShadow = 'none';
+  });
+});
+```
+
+No borres tus 800 líneas. Solo agrega estas mejoras al final del style y del script que ya tienes.      de dondeeeeee despues agrego eso en que numero de linea
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#0a0a0a;--white:#ffffff;--accent:#f5a623;--gray1:#f8f8f6;--gray2:#efefed;--gray3:#d0cfc9;--gray4:#888780;--gray5:#3a3937}
