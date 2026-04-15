@@ -379,10 +379,74 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a;overflow-x:hidde
 #back-top:hover{background:#f5a623}
 #back-top svg{width:18px;height:18px;fill:#fff;transition:fill 0.2s}
 #back-top:hover svg{fill:#0a0a0a}
+  .mu-top-banner{
+  width:100%;
+  background:linear-gradient(90deg,#f5a623,#ffcc66);
+  padding:14px 30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.mu-banner-content{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.mu-banner-badge{
+  background:#0a0a0a;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:6px 12px;
+  border-radius:999px;
+  letter-spacing:1px;
+}
+
+.mu-banner-content p{
+  color:#0a0a0a;
+  font-size:14px;
+  font-weight:600;
+}
+
+.mu-banner-btn{
+  border:none;
+  background:#0a0a0a;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.mu-banner-btn:hover{
+  transform:scale(1.05);
+  background:#222;
+}
+
+@media(max-width:700px){
+  .mu-banner-content{
+    flex-direction:column;
+    text-align:center;
+  }
+}
 </style>
 </head>
 <body>
-
+<div class="mu-top-banner">
+  <div class="mu-banner-content">
+    <span class="mu-banner-badge">NUEVO</span>
+    <p>🎉 Primer viaje con 30% de descuento usando el código <strong>MOTO30</strong></p>
+    <button class="mu-banner-btn">Aprovechar oferta</button>
+  </div>
+</div>
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-logo">
