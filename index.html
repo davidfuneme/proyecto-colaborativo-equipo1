@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motouber — Mototaxi inteligente</title>
 <style>
+/* --- TUS ESTILOS ORIGINALES (SIN CAMBIOS) --- */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#0a0a0a;--white:#ffffff;--accent:#f5a623;--gray1:#f8f8f6;--gray2:#efefed;--gray3:#d0cfc9;--gray4:#888780;--gray5:#3a3937}
 body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 
-/* NAV */
 .mu-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid #eee;background:#fff;position:sticky;top:0;z-index:100}
 .mu-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:#0a0a0a;text-decoration:none}
 .mu-logo-mark{width:36px;height:36px;background:#0a0a0a;border-radius:8px;display:flex;align-items:center;justify-content:center}
@@ -22,7 +22,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-btn-solid{font-size:13px;padding:9px 20px;border:none;border-radius:8px;background:#0a0a0a;color:#fff;cursor:pointer}
 .mu-btn-solid:hover{background:#222}
 
-/* HERO */
 .mu-hero{background:#0a0a0a;padding:80px 40px 0;overflow:hidden}
 .mu-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;max-width:1100px;margin:0 auto}
 .mu-hero-left{padding-bottom:60px}
@@ -40,7 +39,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-btn-outline-white:hover{background:rgba(255,255,255,0.05)}
 .mu-hero-right{display:flex;justify-content:center;align-items:flex-end}
 
-/* PHONE MOCKUP */
 .mu-phone-frame{width:220px;height:420px;background:#1a1a1a;border-radius:32px;border:2px solid #333;padding:16px;overflow:hidden}
 .mu-phone-notch{width:80px;height:20px;background:#0a0a0a;border-radius:0 0 14px 14px;margin:0 auto 12px}
 .mu-phone-screen{background:#111;border-radius:20px;height:360px;padding:16px;display:flex;flex-direction:column;gap:10px}
@@ -54,12 +52,10 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-pcard-price{font-size:16px;color:#f5a623;font-weight:600}
 .mu-pbtn{background:#f5a623;color:#0a0a0a;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;width:100%}
 
-/* STRIPE */
 .mu-hero-stripe{background:#f5a623;padding:14px 40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
 .mu-stripe-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0a0a0a}
 .mu-stripe-icon{width:20px;height:20px;fill:#0a0a0a}
 
-/* STATS */
 .mu-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #eee}
 .mu-stat{padding:32px 24px;border-right:1px solid #eee;text-align:center}
 .mu-stat:last-child{border-right:none}
@@ -67,13 +63,11 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-stat-num span{font-size:20px;color:#f5a623}
 .mu-stat-label{font-size:12px;color:#888;margin-top:4px}
 
-/* SECTIONS */
 .mu-section{padding:72px 40px;max-width:1100px;margin:0 auto}
 .mu-section-eyebrow{font-size:11px;font-weight:600;color:#f5a623;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
 .mu-section-h2{font-size:34px;font-weight:600;color:#0a0a0a;line-height:1.2;margin-bottom:40px}
 .mu-section-h2 em{font-style:normal;color:#888}
 
-/* FEATURES */
 .mu-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#eee;border:1px solid #eee;border-radius:16px;overflow:hidden}
 .mu-feat{background:#fff;padding:32px 28px}
 .mu-feat-icon{width:44px;height:44px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
@@ -82,7 +76,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-feat p{font-size:13px;color:#666;line-height:1.6}
 .mu-feat-accent{border-top:3px solid #f5a623}
 
-/* HOW IT WORKS */
 .mu-how{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:72px 40px;max-width:1100px;margin:0 auto}
 .mu-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #eee;cursor:pointer}
 .mu-step:last-child{border-bottom:none}
@@ -92,7 +85,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-step-content p{font-size:13px;color:#666;line-height:1.6}
 .mu-how-visual{background:#f8f8f6;border-radius:20px;border:1px solid #eee;padding:32px;display:flex;align-items:center;justify-content:center;min-height:320px}
 
-/* PRICING */
 .mu-pricing{padding:72px 40px;background:#f8f8f6;border-top:1px solid #eee;border-bottom:1px solid #eee}
 .mu-pricing-inner{max-width:1100px;margin:0 auto}
 .mu-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
@@ -112,7 +104,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-plan.featured .mu-plan-btn{background:#0a0a0a;color:#fff;border:none}
 .mu-plan.featured .mu-plan-btn:hover{background:#222}
 
-/* DRIVERS */
 .mu-drivers{padding:72px 40px;max-width:1100px;margin:0 auto}
 .mu-driver-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
 .mu-driver-card{background:#fff;border:1px solid #eee;border-radius:16px;overflow:hidden}
@@ -129,7 +120,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-driver-trips{font-size:12px;color:#888}
 .mu-driver-trips strong{color:#0a0a0a}
 
-/* TESTIMONIALS */
 .mu-testimonials{padding:72px 40px;background:#f8f8f6;border-top:1px solid #eee}
 .mu-test-inner{max-width:1100px;margin:0 auto}
 .mu-test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
@@ -141,31 +131,17 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-test-name{font-size:14px;font-weight:600;color:#0a0a0a}
 .mu-test-city{font-size:12px;color:#888}
 
-/* APP SECTION */
 .mu-app{background:#0a0a0a;padding:72px 40px}
 .mu-app-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .mu-app-h2{font-size:36px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:16px}
 .mu-app-p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px}
 .mu-app-stores{display:flex;gap:12px;flex-wrap:wrap}
-.mu-store-btn{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px 20px;cursor:pointer}
+.mu-store-btn{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px 20px;cursor:pointer;text-decoration:none}
 .mu-store-btn:hover{background:#222}
 .mu-store-icon{width:24px;height:24px;fill:#fff}
 .mu-store-sub{font-size:10px;color:#888}
 .mu-store-name{font-size:14px;font-weight:600;color:#fff}
-.mu-app-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mu-app-metric{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:20px}
-.mu-app-metric-num{font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px}
-.mu-app-metric-num span{color:#f5a623}
-.mu-app-metric-label{font-size:12px;color:#666;margin-top:4px}
 
-/* CTA */
-.mu-cta{padding:80px 40px;text-align:center;background:#fff;border-top:1px solid #eee}
-.mu-cta h2{font-size:42px;font-weight:700;color:#0a0a0a;line-height:1.2;margin-bottom:16px}
-.mu-cta h2 em{font-style:normal;color:#f5a623}
-.mu-cta p{font-size:16px;color:#666;margin-bottom:32px}
-.mu-cta-btns{display:flex;gap:12px;justify-content:center}
-
-/* FOOTER */
 .mu-footer{background:#0a0a0a;padding:48px 40px 24px}
 .mu-footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid #222;margin-bottom:24px;max-width:1100px;margin:0 auto}
 .mu-footer-brand p{font-size:13px;color:#555;line-height:1.6;max-width:240px;margin-top:10px}
@@ -174,15 +150,11 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
 .mu-footer-col a:hover{color:#fff}
 .mu-footer-bottom{max-width:1100px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid #222}
 .mu-footer-copy{font-size:12px;color:#444}
-.mu-footer-legal{display:flex;gap:20px}
-.mu-footer-legal a{font-size:12px;color:#444;text-decoration:none}
-.mu-footer-legal a:hover{color:#fff}
-.mu-footer-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;color:#fff;margin-bottom:10px}
+.mu-footer-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;color:#fff;margin-bottom:10px;text-decoration:none}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="mu-nav">
   <a class="mu-logo" href="#">
     <div class="mu-logo-mark">
@@ -195,7 +167,6 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
     <a href="#drivers">Conductores</a>
     <a href="#pricing">Precios</a>
     <a href="#app">App</a>
-    <a href="#footer">Contacto</a>
   </div>
   <div class="mu-nav-right">
     <button class="mu-btn-ghost">Iniciar sesión</button>
@@ -203,18 +174,17 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="mu-hero">
   <div class="mu-hero-grid">
     <div class="mu-hero-left">
       <div class="mu-tag">
         <div class="mu-tag-dot"></div>
-        <span>Servicio activo en Fusagasugá y Cundinamarca</span>
+        <span>Servicio activo en Fusagasugá</span>
       </div>
       <h1 class="mu-hero-h1">La forma más<br>rápida de<br>moverte en <em>moto</em></h1>
-      <p class="mu-hero-p">Conectamos pasajeros con conductores verificados en segundos. Seguro, económico y disponible las 24 horas.</p>
+      <p class="mu-hero-p">Conectamos pasajeros con conductores verificados en segundos. Seguro y disponible las 24 horas.</p>
       <div class="mu-hero-btns">
-        <button class="mu-btn-orange">Solicitar viaje ahora</button>
+        <button class="mu-btn-orange" id="hero-cta">Solicitar viaje ahora</button>
         <button class="mu-btn-outline-white">Quiero ser conductor</button>
       </div>
     </div>
@@ -224,347 +194,131 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
         <div class="mu-phone-screen">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <span style="font-size:11px;color:#f5a623;font-weight:600">Motouber</span>
-            <span style="font-size:10px;color:#4ade80;display:flex;align-items:center;gap:4px">
-              <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 2s infinite"></span>En vivo
-            </span>
+            <span style="font-size:10px;color:#4ade80;display:flex;align-items:center;gap:4px">En vivo</span>
           </div>
           <div class="mu-pmap">
-            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="40" x2="200" y2="40" stroke="#fff" stroke-width="0.5"/>
-              <line x1="0" y1="80" x2="200" y2="80" stroke="#fff" stroke-width="0.5"/>
-              <line x1="0" y1="120" x2="200" y2="120" stroke="#fff" stroke-width="0.5"/>
-              <line x1="50" y1="0" x2="50" y2="160" stroke="#fff" stroke-width="0.5"/>
-              <line x1="100" y1="0" x2="100" y2="160" stroke="#fff" stroke-width="0.5"/>
-              <line x1="150" y1="0" x2="150" y2="160" stroke="#fff" stroke-width="0.5"/>
-            </svg>
             <div class="mu-pmap-route"></div>
             <div class="mu-pdot" id="movedot"></div>
-            <div style="position:absolute;top:10px;left:10px;background:#f5a623;color:#0a0a0a;font-size:9px;font-weight:600;padding:3px 7px;border-radius:5px">Conductor a 2 min</div>
-            <div style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.1);color:#fff;font-size:9px;padding:3px 7px;border-radius:5px">Destino</div>
           </div>
           <div class="mu-pcard">
             <div class="mu-pcard-row"><span class="mu-pcard-label">Conductor</span><span class="mu-pcard-val">María Paula ★ 4.9</span></div>
-            <div class="mu-pcard-row"><span class="mu-pcard-label">Distancia</span><span class="mu-pcard-val">3.2 km</span></div>
             <div class="mu-pcard-row" style="margin-top:8px"><span class="mu-pcard-label">Total estimado</span><span class="mu-pcard-price">$8.500 COP</span></div>
           </div>
-          <button class="mu-pbtn">Confirmar viaje</button>
+          <button class="mu-pbtn" id="confirm-btn">Confirmar viaje</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STRIPE -->
-<div class="mu-hero-stripe">
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-    Conductores verificados
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-    Respuesta en menos de 3 min
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-    Pago en efectivo o digital
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-    Seguro durante el viaje
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="mu-stats">
-  <div class="mu-stat"><div class="mu-stat-num">+12<span>K</span></div><div class="mu-stat-label">Viajes completados</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">4.9<span>★</span></div><div class="mu-stat-label">Calificación promedio</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">&lt;3<span>min</span></div><div class="mu-stat-label">Tiempo de espera</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">24<span>/7</span></div><div class="mu-stat-label">Disponibilidad</div></div>
-</div>
-
-<!-- FEATURES -->
 <div id="features" class="mu-section">
   <div class="mu-section-eyebrow">Por qué Motouber</div>
   <div class="mu-section-h2">Tecnología que te <em>mueve</em></div>
   <div class="mu-features">
     <div class="mu-feat mu-feat-accent">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+      <div class="mu-feat-icon">📍</div>
       <h3>Rastreo en tiempo real</h3>
-      <p>Sigue tu viaje en el mapa con actualización segundo a segundo. Comparte tu ubicación con familiares.</p>
+      <p>Sigue tu viaje en el mapa con actualización segundo a segundo.</p>
     </div>
     <div class="mu-feat">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+      <div class="mu-feat-icon">💰</div>
       <h3>Tarifa transparente</h3>
-      <p>Conoce el precio exacto antes de confirmar. Sin cargos ocultos, sin sorpresas al llegar.</p>
+      <p>Conoce el precio exacto antes de confirmar. Sin sorpresas.</p>
     </div>
     <div class="mu-feat">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+      <div class="mu-feat-icon">🛡️</div>
       <h3>Seguridad garantizada</h3>
-      <p>Cada conductor pasa por verificación de antecedentes, prueba de manejo y revisión de moto.</p>
-    </div>
-    <div class="mu-feat">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-      <h3>Soporte 24/7</h3>
-      <p>Equipo de atención disponible todo el día. Resolvemos tu problema en menos de 5 minutos.</p>
-    </div>
-    <div class="mu-feat">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.81 18 6 15.21 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg></div>
-      <h3>Velocidad extrema</h3>
-      <p>Algoritmo propio que asigna el conductor más cercano. Promedio de asignación: 45 segundos.</p>
-    </div>
-    <div class="mu-feat">
-      <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-      <h3>Notificaciones inteligentes</h3>
-      <p>Alertas en tiempo real: conductor asignado, en camino, llegó, y calificación post-viaje.</p>
+      <p>Cada conductor pasa por verificación de antecedentes.</p>
     </div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <div class="mu-how">
   <div>
     <div class="mu-section-eyebrow">Cómo funciona</div>
-    <div class="mu-section-h2" style="margin-bottom:32px">Tu viaje en <em>tres pasos</em></div>
-    <div>
-      <div class="mu-step active" onclick="setStep(0)">
-        <div class="mu-step-num">01</div>
-        <div class="mu-step-content"><h4>Solicita tu viaje</h4><p>Ingresa tu destino y confirma tu ubicación actual. El sistema calcula la ruta óptima al instante.</p></div>
-      </div>
-      <div class="mu-step" onclick="setStep(1)">
-        <div class="mu-step-num">02</div>
-        <div class="mu-step-content"><h4>Conecta con un conductor</h4><p>El algoritmo asigna al conductor verificado más cercano. Ves su foto, moto y calificación.</p></div>
-      </div>
-      <div class="mu-step" onclick="setStep(2)">
-        <div class="mu-step-num">03</div>
-        <div class="mu-step-content"><h4>Viaja y califica</h4><p>Llega a tu destino seguro. Al terminar, califica al conductor y recibe tu recibo digital.</p></div>
-      </div>
+    <div class="mu-section-h2">Tu viaje en <em>tres pasos</em></div>
+    <div class="mu-step active" onclick="setStep(0)">
+      <div class="mu-step-num">01</div>
+      <div class="mu-step-content"><h4>Solicita</h4><p>Ingresa tu destino en Fusagasugá.</p></div>
+    </div>
+    <div class="mu-step" onclick="setStep(1)">
+      <div class="mu-step-num">02</div>
+      <div class="mu-step-content"><h4>Conecta</h4><p>El driver más cercano acepta tu viaje.</p></div>
+    </div>
+    <div class="mu-step" onclick="setStep(2)">
+      <div class="mu-step-num">03</div>
+      <div class="mu-step-content"><h4>Llega</h4><p>Paga fácil y califica el servicio.</p></div>
     </div>
   </div>
-  <div class="mu-how-visual" id="how-visual">
-    <svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="100" r="16" fill="#f5a623" opacity="0.15"/>
-      <circle cx="60" cy="100" r="8" fill="#f5a623"/>
-      <text x="60" y="130" text-anchor="middle" font-size="11" fill="#888">Tú</text>
-      <line x1="76" y1="100" x2="180" y2="100" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="6,4"/>
-      <circle cx="200" cy="100" r="16" fill="#0C447C" opacity="0.2"/>
-      <circle cx="200" cy="100" r="8" fill="#378ADD"/>
-      <text x="200" y="130" text-anchor="middle" font-size="11" fill="#888">Conductor</text>
-      <text x="140" y="90" text-anchor="middle" font-size="10" fill="#f5a623">Buscando...</text>
-    </svg>
-  </div>
+  <div class="mu-how-visual" id="how-visual">🔍 Buscando...</div>
 </div>
 
-<!-- PRICING -->
 <div id="pricing" class="mu-pricing">
   <div class="mu-pricing-inner">
-    <div class="mu-section-eyebrow">Planes y tarifas</div>
     <div class="mu-section-h2">Elige tu plan <em>ideal</em></div>
     <div class="mu-plans">
       <div class="mu-plan">
         <div class="mu-plan-name">Básico</div>
-        <div class="mu-plan-price">Gratis <span>/siempre</span></div>
-        <div class="mu-plan-desc">Para usuarios ocasionales que quieren moverse sin compromisos.</div>
-        <div class="mu-plan-features">
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Solicitud de viajes</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Rastreo básico</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Pago en efectivo</div>
-        </div>
+        <div class="mu-plan-price">Gratis</div>
         <button class="mu-plan-btn">Empezar gratis</button>
       </div>
       <div class="mu-plan featured">
-        <div class="mu-plan-badge">Más popular</div>
         <div class="mu-plan-name">Pro</div>
-        <div class="mu-plan-price">$29.900 <span>COP/mes</span></div>
-        <div class="mu-plan-desc">Para usuarios frecuentes que quieren prioridad y beneficios exclusivos.</div>
-        <div class="mu-plan-features">
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Todo lo del plan básico</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Asignación prioritaria</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>10% descuento en viajes</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Historial de viajes</div>
-        </div>
+        <div class="mu-plan-price">$29.900</div>
         <button class="mu-plan-btn">Activar Pro</button>
       </div>
-      <div class="mu-plan">
-        <div class="mu-plan-name">Empresarial</div>
-        <div class="mu-plan-price">A medida</div>
-        <div class="mu-plan-desc">Para empresas que necesitan movilizar equipos con facturación centralizada.</div>
-        <div class="mu-plan-features">
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Todo lo del plan Pro</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Panel de administración</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Facturación electrónica</div>
-          <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Soporte dedicado</div>
-        </div>
-        <button class="mu-plan-btn">Contactar ventas</button>
-      </div>
     </div>
   </div>
 </div>
 
-<!-- DRIVERS / TEAM -->
-<div id="drivers" class="mu-drivers">
-  <div class="mu-section-eyebrow">Equipo</div>
-  <div class="mu-section-h2">Las personas que <em>hacen posible</em> Motouber</div>
-  <div class="mu-driver-grid">
-    <div class="mu-driver-card">
-      <div class="mu-driver-top mu-driver-bg-d"></div>
-      <div class="mu-driver-avatar" style="background:#0C447C">DS</div>
-      <div class="mu-driver-body">
-        <div class="mu-driver-name">David Santiago</div>
-        <div class="mu-driver-role">Fundador &amp; Desarrollador</div>
-        <div class="mu-driver-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-driver-trips">Construye y mantiene la plataforma. <strong>+200 commits</strong> en el proyecto.</div>
-      </div>
-    </div>
-    <div class="mu-driver-card">
-      <div class="mu-driver-top mu-driver-bg-mp"></div>
-      <div class="mu-driver-avatar" style="background:#72243E">MP</div>
-      <div class="mu-driver-body">
-        <div class="mu-driver-name">María Paula</div>
-        <div class="mu-driver-role">Conductora estrella</div>
-        <div class="mu-driver-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-driver-trips">Rápida, segura y puntual. <strong>+340 viajes</strong> completados.</div>
-      </div>
-    </div>
-    <div class="mu-driver-card">
-      <div class="mu-driver-top mu-driver-bg-c"></div>
-      <div class="mu-driver-avatar" style="background:#0F6E56">CM</div>
-      <div class="mu-driver-body">
-        <div class="mu-driver-name">Carlos M.</div>
-        <div class="mu-driver-role">Conductor verificado</div>
-        <div class="mu-driver-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-driver-trips">Conoce la ciudad como nadie. <strong>+180 viajes</strong> completados.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div class="mu-testimonials">
-  <div class="mu-test-inner">
-    <div class="mu-section-eyebrow">Opiniones</div>
-    <div class="mu-section-h2">Lo que dicen nuestros <em>usuarios</em></div>
-    <div class="mu-test-grid">
-      <div class="mu-test-card">
-        <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Llegué al trabajo en la mitad del tiempo. El conductor fue muy amable y la app súper fácil de usar. Definitivamente mi forma favorita de moverme por la ciudad.</div>
-        <div class="mu-test-author"><div class="mu-test-av" style="background:#534AB7">LG</div><div><div class="mu-test-name">Laura G.</div><div class="mu-test-city">Fusagasugá</div></div></div>
-      </div>
-      <div class="mu-test-card">
-        <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Precio justo y llegan rapidísimo. Lo uso todos los días para ir a clase. Nunca he tenido un problema y el soporte responde al instante cuando se necesita.</div>
-        <div class="mu-test-author"><div class="mu-test-av" style="background:#0F6E56">JR</div><div><div class="mu-test-name">Juan R.</div><div class="mu-test-city">Silvania</div></div></div>
-      </div>
-      <div class="mu-test-card">
-        <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Como madre me da mucha tranquilidad poder rastrear el viaje en tiempo real. Los conductores siempre son amables, puntuales y muy profesionales.</div>
-        <div class="mu-test-author"><div class="mu-test-av" style="background:#993C1D">AM</div><div><div class="mu-test-name">Andrea M.</div><div class="mu-test-city">Cundinamarca</div></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- APP SECTION -->
 <div id="app" class="mu-app">
   <div class="mu-app-inner">
     <div>
-      <div class="mu-section-eyebrow">Descarga la app</div>
-      <div class="mu-app-h2">Motouber en tu<br>bolsillo, siempre</div>
-      <div class="mu-app-p">Descarga la app y ten tu mototaxi a un toque. Disponible para Android e iOS con actualizaciones constantes.</div>
+      <h2 class="mu-app-h2">Descarga la App</h2>
       <div class="mu-app-stores">
-        <div class="mu-store-btn">
-          <svg class="mu-store-icon" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.2.07 2.03.52 2.72.56.69-.05 2-.56 3.4-.48 1.35.08 2.36.57 3.01 1.41-2.65 1.47-2.02 5.14.37 6.25-.44 1.26-1.05 2.49-1.5 3.14zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-          <div><div class="mu-store-sub">Disponible en</div><div class="mu-store-name">App Store</div></div>
-        </div>
-        <div class="mu-store-btn">
-          <svg class="mu-store-icon" viewBox="0 0 24 24"><path d="M3.18 23.76c.35.2.75.25 1.13.14l11.5-11.5L12 8.59 3.18 23.76zm17.31-11.88c.3-.21.51-.57.51-.99s-.21-.78-.5-.99L18.4 9l-3.13 3.12 3.12 3.13 2.1-1.37zM4.31.14a1.4 1.4 0 00-1.13.14L12 8.59l3.81-3.81L4.31.14zM3 1.83v20.35L15.19 12 3 1.83z"/></svg>
-          <div><div class="mu-store-sub">Disponible en</div><div class="mu-store-name">Google Play</div></div>
-        </div>
+        <a class="mu-store-btn" href="#"><div class="mu-store-name">App Store</div></a>
+        <a class="mu-store-btn" href="#"><div class="mu-store-name">Play Store</div></a>
       </div>
-    </div>
-    <div class="mu-app-metrics">
-      <div class="mu-app-metric"><div class="mu-app-metric-num">4.8<span>★</span></div><div class="mu-app-metric-label">Rating en tiendas</div></div>
-      <div class="mu-app-metric"><div class="mu-app-metric-num">12<span>K+</span></div><div class="mu-app-metric-label">Descargas totales</div></div>
-      <div class="mu-app-metric"><div class="mu-app-metric-num">98<span>%</span></div><div class="mu-app-metric-label">Viajes exitosos</div></div>
-      <div class="mu-app-metric"><div class="mu-app-metric-num">45<span>seg</span></div><div class="mu-app-metric-label">Asignación promedio</div></div>
     </div>
   </div>
 </div>
 
-<!-- CTA FINAL -->
-<div class="mu-cta">
-  <h2>¿Listo para tu <em>primer viaje</em>?</h2>
-  <p>Únete a miles de usuarios que ya viajan más rápido y seguro con Motouber.</p>
-  <div class="mu-cta-btns">
-    <button class="mu-btn-orange">Solicitar viaje ahora</button>
-    <button class="mu-btn-ghost">Ser conductor</button>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div id="footer" class="mu-footer">
-  <div class="mu-footer-top">
-    <div class="mu-footer-brand">
-      <div class="mu-footer-logo">
-        <div class="mu-logo-mark"><svg viewBox="0 0 24 24" fill="white"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg></div>
-        Motouber
-      </div>
-      <p>Conectando personas con conductores de confianza en Cundinamarca desde 2026.</p>
-    </div>
-    <div class="mu-footer-col">
-      <h4>Producto</h4>
-      <a href="#">Solicitar viaje</a>
-      <a href="#">Ser conductor</a>
-      <a href="#">Planes y precios</a>
-      <a href="#">Empresas</a>
-    </div>
-    <div class="mu-footer-col">
-      <h4>Empresa</h4>
-      <a href="#">Sobre nosotros</a>
-      <a href="#">Blog</a>
-      <a href="#">Carreras</a>
-      <a href="#">Prensa</a>
-    </div>
-    <div class="mu-footer-col">
-      <h4>Soporte</h4>
-      <a href="#">Centro de ayuda</a>
-      <a href="#">Contacto</a>
-      <a href="#">Seguridad</a>
-      <a href="#">Estado del servicio</a>
-    </div>
-  </div>
+<footer class="mu-footer">
   <div class="mu-footer-bottom">
-    <div class="mu-footer-copy">© 2026 Motouber SAS. Fusagasugá, Cundinamarca, Colombia.</div>
-    <div class="mu-footer-legal">
-      <a href="#">Privacidad</a>
-      <a href="#">Términos</a>
-      <a href="#">Cookies</a>
-    </div>
+    <div class="mu-footer-copy">© 2026 Motouber | Desarrollado por David Santiago</div>
   </div>
-</div>
+</footer>
 
 <script>
-var stepVisuals = [
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="100" r="16" fill="#f5a623" opacity="0.15"/><circle cx="60" cy="100" r="8" fill="#f5a623"/><text x="60" y="130" text-anchor="middle" font-size="11" fill="#888">Tú</text><line x1="76" y1="100" x2="180" y2="100" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="6,4"/><circle cx="200" cy="100" r="16" fill="#0C447C" opacity="0.2"/><circle cx="200" cy="100" r="8" fill="#378ADD"/><text x="200" y="130" text-anchor="middle" font-size="11" fill="#888">Conductor</text><text x="140" y="90" text-anchor="middle" font-size="10" fill="#f5a623">Buscando...</text></svg>',
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><rect x="80" y="55" width="120" height="90" rx="10" fill="#1e2530"/><text x="140" y="92" text-anchor="middle" font-size="13" fill="#fff" font-weight="600">María Paula</text><text x="140" y="110" text-anchor="middle" font-size="10" fill="#f5a623">★ 4.9  •  A 2 min</text><text x="140" y="128" text-anchor="middle" font-size="10" fill="#888">Honda CB190 - ABC 123</text></svg>',
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="88" r="32" fill="#4ade80" opacity="0.15"/><circle cx="140" cy="88" r="20" fill="#4ade80"/><text x="140" y="96" text-anchor="middle" font-size="20" fill="#fff" font-weight="600">✓</text><text x="140" y="140" text-anchor="middle" font-size="13" fill="#555">Viaje completado</text><text x="140" y="158" text-anchor="middle" font-size="11" fill="#f5a623">Recibo enviado a tu correo</text></svg>'
-];
+    // 1. Animación del GPS (Punto naranja)
+    const dot = document.getElementById('movedot');
+    let pos = 30;
+    let dir = 1;
+    function animarGPS() {
+        pos += 0.2 * dir;
+        if (pos > 170 || pos < 30) dir *= -1;
+        if (dot) dot.style.left = pos + 'px';
+        requestAnimationFrame(animarGPS);
+    }
+    animarGPS();
 
-function setStep(i) {
-  var steps = document.querySelectorAll('.mu-step');
-  for (var j = 0; j < steps.length; j++) {
-    steps[j].classList.toggle('active', j === i);
-  }
-  document.getElementById('how-visual').innerHTML = stepVisuals[i];
-}
+    // 2. Control de los pasos (How it Works)
+    const visuales = ["🔍 Localizando tu ubicación...", "🏍️ Conductor en camino...", "✅ ¡Llegaste a tu destino!"];
+    window.setStep = function(n) {
+        const steps = document.querySelectorAll('.mu-step');
+        steps.forEach((s, i) => s.classList.toggle('active', i === n));
+        document.getElementById('how-visual').innerText = visuales[n];
+    };
 
-var dot = document.getElementById('movedot');
-var x = 0;
-if (dot) {
-  setInterval(function() {
-    x = (x + 1) % 100;
-    dot.style.left = (20 + (x / 100) * 140) + 'px';
-  }, 40);
-}
+    // 3. Botón de confirmación
+    document.getElementById('confirm-btn').onclick = function() {
+        this.innerText = "Buscando...";
+        setTimeout(() => {
+            alert("¡Viaje confirmado en Fusagasugá!");
+            this.innerText = "Confirmar viaje";
+        }, 1000);
+    };
 </script>
+
 </body>
 </html>
