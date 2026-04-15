@@ -1,413 +1,522 @@
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  overflow-x:hidden;
-}
-
-.mu-hero-left,
-.mu-hero-right,
-.mu-section,
-.mu-driver-card,
-.mu-test-card,
-.mu-plan,
-.mu-feat,
-.mu-app-metric{
-  animation:fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(30px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.mu-driver-card,
-.mu-test-card,
-.mu-plan,
-.mu-feat{
-  transition:all 0.3s ease;
-}
-
-.mu-driver-card:hover,
-.mu-test-card:hover,
-.mu-plan:hover,
-.mu-feat:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 20px 40px rgba(0,0,0,0.12);
-}
-
-.mu-btn-orange,
-.mu-btn-solid,
-.mu-btn-ghost,
-.mu-plan-btn,
-.mu-pbtn,
-.mu-store-btn{
-  transition:all 0.3s ease;
-}
-
-.mu-btn-orange:hover,
-.mu-btn-solid:hover,
-.mu-btn-ghost:hover,
-.mu-plan-btn:hover,
-.mu-pbtn:hover,
-.mu-store-btn:hover{
-  transform:translateY(-3px) scale(1.03);
-}
-
-.mu-logo-mark{
-  animation:floatLogo 3s ease-in-out infinite;
-}
-
-@keyframes floatLogo{
-  0%{transform:translateY(0px)}
-  50%{transform:translateY(-5px)}
-  100%{transform:translateY(0px)}
-}
-
-.mu-phone-frame{
-  animation:phoneFloat 4s ease-in-out infinite;
-  box-shadow:0 30px 60px rgba(0,0,0,0.4);
-}
-
-@keyframes phoneFloat{
-  0%{transform:translateY(0px)}
-  50%{transform:translateY(-12px)}
-  100%{transform:translateY(0px)}
-}
-
-.mu-hero::before{
-  content:"";
-  position:absolute;
-  top:-200px;
-  right:-200px;
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle, rgba(245,166,35,0.15) 0%, rgba(245,166,35,0) 70%);
-  pointer-events:none;
-}
-
-.mu-hero{
-  position:relative;
-}
-
-.mu-stat-num{
-  animation:pulseStat 2s infinite;
-}
-
-@keyframes pulseStat{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-  100%{transform:scale(1)}
-}
-
-.mu-driver-avatar{
-  transition:all 0.3s ease;
-}
-
-.mu-driver-card:hover .mu-driver-avatar{
-  transform:scale(1.12) rotate(5deg);
-}
-
-.mu-test-card:hover .mu-test-av{
-  transform:rotate(10deg) scale(1.1);
-}
-
-.mu-test-av{
-  transition:all 0.3s ease;
-}
-
-.mu-nav{
-  backdrop-filter:blur(10px);
-}
-
-@media(max-width:900px){
-  .mu-hero-grid,
-  .mu-how,
-  .mu-app-inner,
-  .mu-footer-top,
-  .mu-driver-grid,
-  .mu-test-grid,
-  .mu-plans,
-  .mu-features,
-  .mu-stats{
-    grid-template-columns:1fr !important;
-  }
-
-  .mu-nav{
-    flex-direction:column;
-    gap:20px;
-  }
-
-  .mu-nav-links{
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
-  .mu-hero-h1{
-    font-size:38px;
-  }
-
-  .mu-section-h2,
-  .mu-app-h2,
-  .mu-cta h2{
-    font-size:30px;
-  }
-}
-```
-
-2. Luego, al final de tu JavaScript antes de </script>, pega esto:
-
-```javascript
-const revealItems = document.querySelectorAll('.mu-feat, .mu-driver-card, .mu-test-card, .mu-plan, .mu-app-metric');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0px)';
-    }
-  });
-}, { threshold: 0.2 });
-
-revealItems.forEach(item => {
-  item.style.opacity = '0';
-  item.style.transform = 'translateY(40px)';
-  item.style.transition = 'all 0.8s ease';
-  observer.observe(item);
-});
-
-const buttons = document.querySelectorAll('button');
-buttons.forEach(button => {
-  button.addEventListener('mouseenter', () => {
-    button.style.boxShadow = '0 10px 25px rgba(245,166,35,0.35)';
-  });
-
-  button.addEventListener('mouseleave', () => {
-    button.style.boxShadow = 'none';
-  });
-});
-```
-
-No borres tus 800 líneas. Solo agrega estas mejoras al final del style y del script que ya tienes.      de dondeeeeee despues agrego eso en que numero de linea
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motouber — Mototaxi inteligente</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0a0a0a;--white:#ffffff;--accent:#f5a623;--gray1:#f8f8f6;--gray2:#efefed;--gray3:#d0cfc9;--gray4:#888780;--gray5:#3a3937}
-body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
- 
-/* NAV */
-.mu-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid #eee;background:#fff;position:sticky;top:0;z-index:100}
-.mu-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:#0a0a0a;text-decoration:none}
-.mu-logo-mark{width:36px;height:36px;background:#0a0a0a;border-radius:8px;display:flex;align-items:center;justify-content:center}
+:root{--black:#0a0a0a;--white:#fff;--accent:#f5a623;--accent2:#e8440a;--gray1:#f8f8f6;--gray2:#efefed;--gray3:#d0cfc9;--gray4:#888780;--gray5:#3a3937}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a;overflow-x:hidden}
+
+/* ===== LOADER ===== */
+#loader{position:fixed;inset:0;background:#0a0a0a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.6s}
+#loader.done{opacity:0;pointer-events:none}
+.loader-logo{font-size:32px;font-weight:700;color:#fff;display:flex;align-items:center;gap:12px;animation:logoIn 0.5s ease}
+.loader-mark{width:48px;height:48px;background:#f5a623;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.loader-mark svg{width:28px;height:28px;fill:#0a0a0a}
+.loader-bar-wrap{width:200px;height:3px;background:#222;border-radius:3px;margin-top:24px;overflow:hidden}
+.loader-bar{height:100%;background:#f5a623;border-radius:3px;width:0;animation:loadBar 1.4s ease forwards}
+@keyframes loadBar{to{width:100%}}
+@keyframes logoIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== CURSOR ===== */
+#cursor{width:12px;height:12px;background:#f5a623;border-radius:50%;position:fixed;pointer-events:none;z-index:8888;transition:transform 0.15s,width 0.2s,height 0.2s;transform:translate(-50%,-50%)}
+#cursor.big{width:36px;height:36px;opacity:0.4}
+
+/* ===== SCROLL PROGRESS ===== */
+#progress{position:fixed;top:0;left:0;height:3px;background:#f5a623;z-index:7777;width:0;transition:width 0.1s}
+
+/* ===== NAV ===== */
+.mu-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid #eee;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);position:sticky;top:0;z-index:1000;transition:box-shadow 0.3s}
+.mu-nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+.mu-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;color:#0a0a0a;text-decoration:none}
+.mu-logo-mark{width:36px;height:36px;background:#0a0a0a;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:transform 0.3s}
+.mu-logo:hover .mu-logo-mark{transform:rotate(-10deg) scale(1.1)}
 .mu-logo-mark svg{width:20px;height:20px}
 .mu-nav-links{display:flex;gap:28px}
-.mu-nav-links a{font-size:14px;color:#666;text-decoration:none}
+.mu-nav-links a{font-size:14px;color:#666;text-decoration:none;position:relative;transition:color 0.2s}
+.mu-nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:#f5a623;transition:width 0.3s}
 .mu-nav-links a:hover{color:#0a0a0a}
+.mu-nav-links a:hover::after{width:100%}
 .mu-nav-right{display:flex;gap:10px;align-items:center}
-.mu-btn-ghost{font-size:13px;padding:8px 18px;border:1px solid #ccc;border-radius:8px;background:transparent;color:#0a0a0a;cursor:pointer}
-.mu-btn-solid{font-size:13px;padding:9px 20px;border:none;border-radius:8px;background:#0a0a0a;color:#fff;cursor:pointer}
-.mu-btn-solid:hover{background:#222}
- 
-/* HERO */
-.mu-hero{background:#0a0a0a;padding:80px 40px 0;overflow:hidden}
-.mu-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;max-width:1100px;margin:0 auto}
+.mu-btn-ghost{font-size:13px;padding:8px 18px;border:1px solid #ccc;border-radius:8px;background:transparent;color:#0a0a0a;cursor:pointer;transition:all 0.2s}
+.mu-btn-ghost:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
+.mu-btn-solid{font-size:13px;padding:9px 20px;border:none;border-radius:8px;background:#0a0a0a;color:#fff;cursor:pointer;transition:all 0.2s}
+.mu-btn-solid:hover{background:#f5a623;color:#0a0a0a;transform:translateY(-1px)}
+
+/* ===== HERO ===== */
+.mu-hero{background:#0a0a0a;padding:80px 40px 0;overflow:hidden;position:relative}
+.mu-hero-particles{position:absolute;inset:0;pointer-events:none}
+.mu-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;max-width:1100px;margin:0 auto;position:relative;z-index:2}
 .mu-hero-left{padding-bottom:60px}
-.mu-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 14px;margin-bottom:24px}
+.mu-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:5px 14px;margin-bottom:24px;animation:fadeUp 0.6s ease 0.2s both}
 .mu-tag-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .mu-tag span{font-size:12px;color:rgba(255,255,255,0.7)}
-.mu-hero-h1{font-size:52px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:20px}
+.mu-hero-h1{font-size:56px;font-weight:700;color:#fff;line-height:1.05;margin-bottom:20px;animation:fadeUp 0.6s ease 0.35s both}
 .mu-hero-h1 em{font-style:normal;color:#f5a623}
-.mu-hero-p{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:36px;max-width:420px}
-.mu-hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.mu-btn-orange{font-size:14px;padding:13px 28px;border:none;border-radius:8px;background:#f5a623;color:#0a0a0a;cursor:pointer;font-weight:600}
-.mu-btn-orange:hover{background:#e09400}
-.mu-btn-outline-white{font-size:14px;padding:13px 28px;border:1px solid rgba(255,255,255,0.25);border-radius:8px;background:transparent;color:#fff;cursor:pointer}
-.mu-btn-outline-white:hover{background:rgba(255,255,255,0.05)}
-.mu-hero-right{display:flex;justify-content:center;align-items:flex-end}
- 
-/* PHONE MOCKUP */
-.mu-phone-frame{width:220px;height:420px;background:#1a1a1a;border-radius:32px;border:2px solid #333;padding:16px;overflow:hidden}
-.mu-phone-notch{width:80px;height:20px;background:#0a0a0a;border-radius:0 0 14px 14px;margin:0 auto 12px}
-.mu-phone-screen{background:#111;border-radius:20px;height:360px;padding:16px;display:flex;flex-direction:column;gap:10px}
-.mu-pmap{width:100%;height:160px;background:#1e2530;border-radius:12px;position:relative;overflow:hidden}
-.mu-pmap-route{position:absolute;bottom:20px;left:20px;right:20px;height:2px;background:#f5a623}
-.mu-pdot{width:10px;height:10px;border-radius:50%;background:#f5a623;position:absolute;bottom:15px;left:30px;transition:left 0.05s linear}
-.mu-pcard{background:#1e1e1e;border-radius:10px;padding:12px;border:1px solid #333}
-.mu-pcard-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.mu-pcard-label{font-size:10px;color:#888}
-.mu-pcard-val{font-size:12px;color:#fff;font-weight:500}
-.mu-pcard-price{font-size:16px;color:#f5a623;font-weight:600}
-.mu-pbtn{background:#f5a623;color:#0a0a0a;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;width:100%}
- 
-/* STRIPE */
+.mu-hero-h1 .word{display:inline-block;overflow:hidden}
+.mu-hero-p{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:36px;max-width:420px;animation:fadeUp 0.6s ease 0.5s both}
+.mu-hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.65s both}
+.mu-btn-orange{font-size:14px;padding:14px 30px;border:none;border-radius:10px;background:#f5a623;color:#0a0a0a;cursor:pointer;font-weight:700;transition:all 0.25s;position:relative;overflow:hidden}
+.mu-btn-orange::after{content:'';position:absolute;inset:0;background:#fff;opacity:0;transition:opacity 0.2s}
+.mu-btn-orange:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,0.4)}
+.mu-btn-orange:hover::after{opacity:0.1}
+.mu-btn-outline-white{font-size:14px;padding:14px 30px;border:1px solid rgba(255,255,255,0.25);border-radius:10px;background:transparent;color:#fff;cursor:pointer;transition:all 0.25s}
+.mu-btn-outline-white:hover{background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+.mu-hero-right{display:flex;justify-content:center;align-items:flex-end;animation:fadeUp 0.8s ease 0.4s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* PHONE */
+.mu-phone-frame{width:220px;height:440px;background:#1a1a1a;border-radius:36px;border:2px solid #2a2a2a;padding:14px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.6)}
+.mu-phone-notch{width:80px;height:20px;background:#0a0a0a;border-radius:0 0 14px 14px;margin:0 auto 10px}
+.mu-phone-screen{background:#111;border-radius:22px;height:380px;padding:14px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+.mu-pmap{width:100%;height:155px;background:#1e2530;border-radius:12px;position:relative;overflow:hidden}
+.mu-pmap-route{position:absolute;bottom:22px;left:14px;right:14px;height:2px;background:#f5a623;opacity:0.7}
+.mu-pdot{width:12px;height:12px;border-radius:50%;background:#f5a623;position:absolute;bottom:17px;left:14px;box-shadow:0 0 8px #f5a623}
+.mu-pcard{background:#1e1e1e;border-radius:10px;padding:11px;border:1px solid #2a2a2a}
+.mu-pcard-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.mu-pcard-label{font-size:10px;color:#666}
+.mu-pcard-val{font-size:11px;color:#fff;font-weight:500}
+.mu-pcard-price{font-size:15px;color:#f5a623;font-weight:700}
+.mu-pbtn{background:#f5a623;color:#0a0a0a;border:none;border-radius:8px;padding:9px;font-size:11px;font-weight:700;cursor:pointer;width:100%;transition:transform 0.15s}
+.mu-pbtn:hover{transform:scale(1.02)}
+
+/* ===== STRIPE ===== */
 .mu-hero-stripe{background:#f5a623;padding:14px 40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
-.mu-stripe-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0a0a0a}
+.mu-stripe-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#0a0a0a;transition:transform 0.2s}
+.mu-stripe-item:hover{transform:scale(1.05)}
 .mu-stripe-icon{width:20px;height:20px;fill:#0a0a0a}
- 
-/* STATS */
+
+/* ===== STATS ===== */
 .mu-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #eee}
-.mu-stat{padding:32px 24px;border-right:1px solid #eee;text-align:center}
+.mu-stat{padding:36px 24px;border-right:1px solid #eee;text-align:center;transition:background 0.3s}
+.mu-stat:hover{background:#fffbf0}
 .mu-stat:last-child{border-right:none}
-.mu-stat-num{font-size:36px;font-weight:700;color:#0a0a0a;letter-spacing:-1px}
-.mu-stat-num span{font-size:20px;color:#f5a623}
+.mu-stat-num{font-size:40px;font-weight:800;color:#0a0a0a;letter-spacing:-2px}
+.mu-stat-num span{font-size:22px;color:#f5a623}
 .mu-stat-label{font-size:12px;color:#888;margin-top:4px}
- 
-/* SECTIONS */
-.mu-section{padding:72px 40px;max-width:1100px;margin:0 auto}
-.mu-section-eyebrow{font-size:11px;font-weight:600;color:#f5a623;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
-.mu-section-h2{font-size:34px;font-weight:600;color:#0a0a0a;line-height:1.2;margin-bottom:40px}
-.mu-section-h2 em{font-style:normal;color:#888}
- 
-/* FEATURES */
-.mu-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#eee;border:1px solid #eee;border-radius:16px;overflow:hidden}
-.mu-feat{background:#fff;padding:32px 28px}
-.mu-feat-icon{width:44px;height:44px;background:#f5f5f5;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.mu-feat-icon svg{width:22px;height:22px;fill:#0a0a0a}
-.mu-feat h3{font-size:16px;font-weight:600;color:#0a0a0a;margin-bottom:8px}
-.mu-feat p{font-size:13px;color:#666;line-height:1.6}
+
+/* ===== SECTIONS ===== */
+.mu-section{padding:80px 40px;max-width:1100px;margin:0 auto}
+.mu-section-eyebrow{font-size:11px;font-weight:700;color:#f5a623;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px}
+.mu-section-h2{font-size:36px;font-weight:700;color:#0a0a0a;line-height:1.15;margin-bottom:48px}
+.mu-section-h2 em{font-style:normal;color:#aaa}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ===== FEATURES ===== */
+.mu-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#eee;border:1px solid #eee;border-radius:20px;overflow:hidden}
+.mu-feat{background:#fff;padding:36px 28px;transition:background 0.3s;cursor:default;position:relative;overflow:hidden}
+.mu-feat::before{content:'';position:absolute;inset:0;background:#fffbf0;opacity:0;transition:opacity 0.3s}
+.mu-feat:hover::before{opacity:1}
+.mu-feat:hover .mu-feat-icon{background:#f5a623;transform:scale(1.1) rotate(-5deg)}
+.mu-feat:hover .mu-feat-icon svg{fill:#0a0a0a}
+.mu-feat-icon{width:48px;height:48px;background:#f5f5f5;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all 0.3s;position:relative;z-index:1}
+.mu-feat-icon svg{width:24px;height:24px;fill:#0a0a0a;transition:fill 0.3s}
+.mu-feat h3{font-size:16px;font-weight:700;color:#0a0a0a;margin-bottom:8px;position:relative;z-index:1}
+.mu-feat p{font-size:13px;color:#666;line-height:1.6;position:relative;z-index:1}
 .mu-feat-accent{border-top:3px solid #f5a623}
- 
-/* HOW IT WORKS */
-.mu-how{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:72px 40px;max-width:1100px;margin:0 auto}
-.mu-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #eee;cursor:pointer}
+
+/* ===== HOW IT WORKS ===== */
+.mu-how{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:80px 40px;max-width:1100px;margin:0 auto}
+.mu-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #eee;cursor:pointer;transition:all 0.2s}
 .mu-step:last-child{border-bottom:none}
-.mu-step.active .mu-step-num{background:#0a0a0a;color:#fff}
-.mu-step-num{width:36px;height:36px;border-radius:50%;background:#f5f5f5;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#888;flex-shrink:0;transition:all 0.2s}
-.mu-step-content h4{font-size:15px;font-weight:600;color:#0a0a0a;margin-bottom:4px}
+.mu-step:hover{padding-left:6px}
+.mu-step.active .mu-step-num{background:#0a0a0a;color:#fff;transform:scale(1.1)}
+.mu-step-num{width:40px;height:40px;border-radius:50%;background:#f5f5f5;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#888;flex-shrink:0;transition:all 0.3s}
+.mu-step-content h4{font-size:15px;font-weight:700;color:#0a0a0a;margin-bottom:4px}
 .mu-step-content p{font-size:13px;color:#666;line-height:1.6}
-.mu-how-visual{background:#f8f8f6;border-radius:20px;border:1px solid #eee;padding:32px;display:flex;align-items:center;justify-content:center;min-height:320px}
- 
-/* PRICING */
-.mu-pricing{padding:72px 40px;background:#f8f8f6;border-top:1px solid #eee;border-bottom:1px solid #eee}
+.mu-how-visual{background:#f8f8f6;border-radius:24px;border:1px solid #eee;padding:32px;display:flex;align-items:center;justify-content:center;min-height:340px;transition:all 0.4s}
+
+/* ===== TRIP CALCULATOR ===== */
+.mu-calculator{padding:80px 40px;background:#0a0a0a}
+.mu-calc-inner{max-width:900px;margin:0 auto}
+.mu-calc-inner .mu-section-eyebrow{color:#f5a623}
+.mu-calc-h2{font-size:36px;font-weight:700;color:#fff;margin-bottom:8px}
+.mu-calc-sub{font-size:15px;color:#666;margin-bottom:40px}
+.mu-calc-form{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.mu-calc-field{display:flex;flex-direction:column;gap:8px}
+.mu-calc-field label{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.08em}
+.mu-calc-field select,.mu-calc-field input{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:10px;padding:13px 16px;font-size:14px;color:#fff;outline:none;cursor:pointer;transition:border-color 0.2s;font-family:Arial,sans-serif}
+.mu-calc-field select:hover,.mu-calc-field input:focus{border-color:#f5a623}
+.mu-calc-field select option{background:#1a1a1a}
+.mu-calc-result{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px}
+.mu-calc-res-item{text-align:center}
+.mu-calc-res-label{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+.mu-calc-res-val{font-size:26px;font-weight:700;color:#fff}
+.mu-calc-res-val.accent{color:#f5a623}
+.mu-calc-btn{width:100%;padding:16px;border:none;border-radius:12px;background:#f5a623;color:#0a0a0a;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.25s}
+.mu-calc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,0.3)}
+.mu-calc-btn:active{transform:translateY(0)}
+
+/* ===== LIVE MAP ===== */
+.mu-map-section{padding:80px 40px;background:#f8f8f6;border-top:1px solid #eee}
+.mu-map-inner{max-width:1100px;margin:0 auto}
+.mu-map-wrap{background:#1e2530;border-radius:24px;height:360px;position:relative;overflow:hidden;border:1px solid #eee;margin-top:40px}
+.mu-map-grid{position:absolute;inset:0}
+.mu-map-road{position:absolute;background:#253040;transition:all 0.3s}
+.mu-map-driver{position:absolute;width:28px;height:28px;background:#f5a623;border-radius:50%;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 0 0 4px rgba(245,166,35,0.25);cursor:pointer;z-index:10;transition:transform 0.3s}
+.mu-map-driver:hover{transform:scale(1.3)}
+.mu-map-driver svg{width:14px;height:14px;fill:#0a0a0a}
+.mu-map-driver-label{position:absolute;background:#0a0a0a;color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap;top:-30px;left:50%;transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity 0.2s}
+.mu-map-driver:hover .mu-map-driver-label{opacity:1}
+.mu-map-user{position:absolute;width:20px;height:20px;background:#4ade80;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 8px rgba(74,222,128,0.15);z-index:10}
+.mu-map-overlay{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;z-index:20}
+.mu-map-badge{background:rgba(10,10,10,0.85);backdrop-filter:blur(8px);border-radius:10px;padding:10px 14px;color:#fff;font-size:12px}
+.mu-map-badge strong{color:#f5a623;display:block;font-size:20px;font-weight:700}
+.mu-map-controls{display:flex;gap:8px}
+.mu-map-ctrl{background:rgba(10,10,10,0.85);backdrop-filter:blur(8px);border:none;border-radius:8px;padding:10px 14px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;transition:background 0.2s}
+.mu-map-ctrl:hover{background:#f5a623;color:#0a0a0a}
+.mu-map-ctrl.active{background:#f5a623;color:#0a0a0a}
+.mu-map-driver-info{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(10,10,10,0.9);backdrop-filter:blur(8px);border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;z-index:20;transform:translateY(100px);opacity:0;transition:all 0.4s}
+.mu-map-driver-info.show{transform:translateY(0);opacity:1}
+.mu-map-di-left{display:flex;align-items:center;gap:12px}
+.mu-map-di-av{width:40px;height:40px;border-radius:50%;background:#f5a623;display:flex;align-items:center;justify-content:center;font-weight:700;color:#0a0a0a;font-size:14px}
+.mu-map-di-name{color:#fff;font-weight:600;font-size:14px}
+.mu-map-di-info{color:#888;font-size:12px;margin-top:2px}
+.mu-map-di-btn{background:#f5a623;color:#0a0a0a;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer}
+
+/* ===== PRICING ===== */
+.mu-pricing{padding:80px 40px;background:#fff;border-top:1px solid #eee}
 .mu-pricing-inner{max-width:1100px;margin:0 auto}
-.mu-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.mu-plan{background:#fff;border:1px solid #eee;border-radius:16px;padding:28px}
-.mu-plan.featured{border:2px solid #f5a623}
-.mu-plan-badge{background:#FEF3C7;color:#92400E;font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:12px}
-.mu-plan-name{font-size:18px;font-weight:600;color:#0a0a0a;margin-bottom:6px}
-.mu-plan-price{font-size:36px;font-weight:700;color:#0a0a0a;letter-spacing:-1px;margin-bottom:4px}
+.mu-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.mu-plan{background:#fff;border:1px solid #eee;border-radius:20px;padding:32px;transition:all 0.3s;cursor:default}
+.mu-plan:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.08)}
+.mu-plan.featured{border:2px solid #f5a623;background:#fffbf0}
+.mu-plan.featured:hover{box-shadow:0 16px 48px rgba(245,166,35,0.2)}
+.mu-plan-badge{background:#FEF3C7;color:#92400E;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-block;margin-bottom:14px}
+.mu-plan-name{font-size:20px;font-weight:700;color:#0a0a0a;margin-bottom:6px}
+.mu-plan-price{font-size:40px;font-weight:800;color:#0a0a0a;letter-spacing:-2px;margin-bottom:6px}
 .mu-plan-price span{font-size:14px;font-weight:400;color:#888}
-.mu-plan-desc{font-size:13px;color:#666;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #eee}
-.mu-plan-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.mu-plan-feat{display:flex;align-items:center;gap:8px;font-size:13px;color:#555}
-.mu-plan-feat-check{width:16px;height:16px;border-radius:50%;background:#d1fae5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mu-plan-feat-check svg{width:10px;height:10px;fill:#065f46}
-.mu-plan-btn{width:100%;padding:11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #ccc;background:transparent;color:#0a0a0a}
-.mu-plan-btn:hover{background:#f5f5f5}
+.mu-plan-desc{font-size:13px;color:#666;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid #eee;line-height:1.6}
+.mu-plan-features{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.mu-plan-feat{display:flex;align-items:center;gap:10px;font-size:13px;color:#555}
+.mu-plan-feat-check{width:18px;height:18px;border-radius:50%;background:#d1fae5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mu-plan-feat-check svg{width:10px;height:10px}
+.mu-plan-btn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:1px solid #ddd;background:transparent;color:#0a0a0a;transition:all 0.25s}
+.mu-plan-btn:hover{background:#0a0a0a;color:#fff;border-color:#0a0a0a;transform:translateY(-1px)}
 .mu-plan.featured .mu-plan-btn{background:#0a0a0a;color:#fff;border:none}
-.mu-plan.featured .mu-plan-btn:hover{background:#222}
- 
-/* DRIVERS */
-.mu-drivers{padding:72px 40px;max-width:1100px;margin:0 auto}
-.mu-driver-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.mu-driver-card{background:#fff;border:1px solid #eee;border-radius:16px;overflow:hidden}
-.mu-driver-top{height:80px;display:flex;align-items:flex-end;padding:16px;position:relative}
+.mu-plan.featured .mu-plan-btn:hover{background:#f5a623;color:#0a0a0a}
+
+/* ===== BOOKING MODAL ===== */
+#booking-modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:5000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+#booking-modal.open{opacity:1;pointer-events:all}
+.mu-modal{background:#fff;border-radius:24px;padding:40px;width:480px;max-width:95vw;position:relative;transform:scale(0.9) translateY(20px);transition:all 0.3s}
+#booking-modal.open .mu-modal{transform:scale(1) translateY(0)}
+.mu-modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:#f5f5f5;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background 0.2s}
+.mu-modal-close:hover{background:#eee}
+.mu-modal h2{font-size:24px;font-weight:700;color:#0a0a0a;margin-bottom:6px}
+.mu-modal p{font-size:14px;color:#888;margin-bottom:28px}
+.mu-modal-field{margin-bottom:16px}
+.mu-modal-field label{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:7px}
+.mu-modal-field input,.mu-modal-field select{width:100%;background:#f8f8f6;border:1px solid #eee;border-radius:10px;padding:12px 14px;font-size:14px;color:#0a0a0a;outline:none;transition:border-color 0.2s;font-family:Arial,sans-serif}
+.mu-modal-field input:focus,.mu-modal-field select:focus{border-color:#f5a623}
+.mu-modal-submit{width:100%;padding:15px;border:none;border-radius:12px;background:#f5a623;color:#0a0a0a;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;transition:all 0.25s}
+.mu-modal-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,0.3)}
+.mu-modal-steps{display:flex;gap:8px;margin-bottom:24px}
+.mu-modal-step-dot{flex:1;height:4px;border-radius:4px;background:#eee;transition:background 0.3s}
+.mu-modal-step-dot.done{background:#f5a623}
+#booking-success{display:none;text-align:center;padding:20px 0}
+#booking-success .success-icon{width:64px;height:64px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px}
+#booking-success h3{font-size:22px;font-weight:700;color:#0a0a0a;margin-bottom:8px}
+#booking-success p{font-size:14px;color:#666;margin-bottom:24px}
+
+/* ===== DRIVER SIGNUP ===== */
+.mu-driver-signup{padding:80px 40px;background:#0a0a0a}
+.mu-ds-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.mu-ds-left .mu-section-eyebrow{color:#f5a623}
+.mu-ds-h2{font-size:40px;font-weight:700;color:#fff;line-height:1.15;margin-bottom:16px}
+.mu-ds-h2 em{font-style:normal;color:#f5a623}
+.mu-ds-p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px}
+.mu-ds-benefits{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+.mu-ds-benefit{display:flex;align-items:center;gap:14px;padding:16px;background:#1a1a1a;border-radius:12px;border:1px solid #2a2a2a;transition:border-color 0.2s}
+.mu-ds-benefit:hover{border-color:#f5a623}
+.mu-ds-benefit-icon{width:40px;height:40px;background:#f5a623;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mu-ds-benefit-icon svg{width:20px;height:20px;fill:#0a0a0a}
+.mu-ds-benefit-title{font-size:14px;font-weight:600;color:#fff}
+.mu-ds-benefit-val{font-size:13px;color:#888}
+.mu-ds-form{background:#1a1a1a;border-radius:20px;padding:32px;border:1px solid #2a2a2a}
+.mu-ds-form h3{font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.mu-ds-form p{font-size:13px;color:#666;margin-bottom:24px}
+.mu-ds-field{margin-bottom:14px}
+.mu-ds-field label{font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:7px}
+.mu-ds-field input,.mu-ds-field select{width:100%;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:12px 14px;font-size:13px;color:#fff;outline:none;transition:border-color 0.2s;font-family:Arial,sans-serif}
+.mu-ds-field input:focus,.mu-ds-field select:focus{border-color:#f5a623}
+.mu-ds-field select option{background:#111}
+.mu-ds-submit{width:100%;padding:14px;border:none;border-radius:10px;background:#f5a623;color:#0a0a0a;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.25s;margin-top:6px}
+.mu-ds-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,0.3)}
+#ds-success{display:none;text-align:center;padding:20px 0}
+#ds-success h3{font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+#ds-success p{font-size:14px;color:#888}
+
+/* ===== TEAM ===== */
+.mu-drivers-section{padding:80px 40px;max-width:1100px;margin:0 auto}
+.mu-driver-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.mu-driver-card{background:#fff;border:1px solid #eee;border-radius:20px;overflow:hidden;transition:all 0.3s}
+.mu-driver-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,0.1)}
+.mu-driver-top{height:88px;position:relative}
 .mu-driver-bg-d{background:#0C447C}
 .mu-driver-bg-mp{background:#72243E}
 .mu-driver-bg-c{background:#0F6E56}
-.mu-driver-avatar{width:56px;height:56px;border-radius:50%;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:#fff;position:absolute;bottom:-28px;left:20px}
-.mu-driver-body{padding:40px 20px 20px}
-.mu-driver-name{font-size:16px;font-weight:600;color:#0a0a0a}
+.mu-driver-avatar{width:60px;height:60px;border-radius:50%;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;position:absolute;bottom:-30px;left:20px}
+.mu-driver-body{padding:44px 20px 24px}
+.mu-driver-name{font-size:17px;font-weight:700;color:#0a0a0a}
 .mu-driver-role{font-size:12px;color:#888;margin-bottom:10px}
 .mu-driver-stars{display:flex;gap:3px;margin-bottom:10px}
-.mu-star{width:12px;height:12px;background:#f5a623;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.mu-star{width:13px;height:13px;background:#f5a623;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 .mu-driver-trips{font-size:12px;color:#888}
 .mu-driver-trips strong{color:#0a0a0a}
- 
-/* TESTIMONIALS */
-.mu-testimonials{padding:72px 40px;background:#f8f8f6;border-top:1px solid #eee}
+
+/* ===== TESTIMONIALS ===== */
+.mu-testimonials{padding:80px 40px;background:#f8f8f6;border-top:1px solid #eee}
 .mu-test-inner{max-width:1100px;margin:0 auto}
-.mu-test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
-.mu-test-card{background:#fff;border:1px solid #eee;border-radius:16px;padding:24px}
-.mu-test-stars{display:flex;gap:3px;margin-bottom:14px}
-.mu-test-quote{font-size:14px;color:#555;line-height:1.7;margin-bottom:16px}
-.mu-test-author{display:flex;align-items:center;gap:10px}
-.mu-test-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;flex-shrink:0}
-.mu-test-name{font-size:14px;font-weight:600;color:#0a0a0a}
+.mu-test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.mu-test-card{background:#fff;border:1px solid #eee;border-radius:20px;padding:28px;transition:all 0.3s;cursor:pointer}
+.mu-test-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-color:#f5a623}
+.mu-test-stars{display:flex;gap:3px;margin-bottom:16px}
+.mu-test-quote{font-size:14px;color:#555;line-height:1.7;margin-bottom:18px}
+.mu-test-author{display:flex;align-items:center;gap:12px}
+.mu-test-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.mu-test-name{font-size:14px;font-weight:700;color:#0a0a0a}
 .mu-test-city{font-size:12px;color:#888}
- 
-/* APP SECTION */
-.mu-app{background:#0a0a0a;padding:72px 40px}
+.mu-test-helpful{font-size:12px;color:#aaa;margin-top:8px;display:flex;align-items:center;gap:6px}
+.mu-test-helpful button{border:none;background:none;cursor:pointer;color:#aaa;font-size:12px;transition:color 0.2s;padding:0}
+.mu-test-helpful button:hover{color:#f5a623}
+.mu-test-helpful button.liked{color:#f5a623}
+
+/* ===== APP ===== */
+.mu-app{background:#0a0a0a;padding:80px 40px}
 .mu-app-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.mu-app-h2{font-size:36px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:16px}
+.mu-app-h2{font-size:40px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px}
 .mu-app-p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px}
 .mu-app-stores{display:flex;gap:12px;flex-wrap:wrap}
-.mu-store-btn{display:flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px 20px;cursor:pointer}
-.mu-store-btn:hover{background:#222}
-.mu-store-icon{width:24px;height:24px;fill:#fff}
-.mu-store-sub{font-size:10px;color:#888}
-.mu-store-name{font-size:14px;font-weight:600;color:#fff}
-.mu-app-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mu-app-metric{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:20px}
-.mu-app-metric-num{font-size:28px;font-weight:700;color:#fff;letter-spacing:-1px}
+.mu-store-btn{display:flex;align-items:center;gap:12px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:13px 22px;cursor:pointer;transition:all 0.25s}
+.mu-store-btn:hover{background:#f5a623;border-color:#f5a623}
+.mu-store-btn:hover .mu-store-icon{fill:#0a0a0a}
+.mu-store-btn:hover .mu-store-sub,.mu-store-btn:hover .mu-store-name{color:#0a0a0a}
+.mu-store-icon{width:24px;height:24px;fill:#fff;transition:fill 0.25s}
+.mu-store-sub{font-size:10px;color:#888;transition:color 0.25s}
+.mu-store-name{font-size:14px;font-weight:700;color:#fff;transition:color 0.25s}
+.mu-app-metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mu-app-metric{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:22px;transition:all 0.3s}
+.mu-app-metric:hover{border-color:#f5a623;transform:scale(1.02)}
+.mu-app-metric-num{font-size:30px;font-weight:800;color:#fff;letter-spacing:-1px}
 .mu-app-metric-num span{color:#f5a623}
-.mu-app-metric-label{font-size:12px;color:#666;margin-top:4px}
- 
-/* CTA */
-.mu-cta{padding:80px 40px;text-align:center;background:#fff;border-top:1px solid #eee}
-.mu-cta h2{font-size:42px;font-weight:700;color:#0a0a0a;line-height:1.2;margin-bottom:16px}
+.mu-app-metric-label{font-size:12px;color:#555;margin-top:4px}
+
+/* ===== TRACKING ===== */
+.mu-tracking{padding:80px 40px;background:#fff;border-top:1px solid #eee}
+.mu-tracking-inner{max-width:900px;margin:0 auto}
+.mu-track-box{background:#f8f8f6;border:1px solid #eee;border-radius:20px;padding:32px;margin-top:40px}
+.mu-track-input-row{display:flex;gap:12px;margin-bottom:24px}
+.mu-track-input{flex:1;background:#fff;border:1px solid #ddd;border-radius:10px;padding:13px 16px;font-size:14px;color:#0a0a0a;outline:none;transition:border-color 0.2s;font-family:Arial,sans-serif}
+.mu-track-input:focus{border-color:#f5a623}
+.mu-track-btn{background:#0a0a0a;color:#fff;border:none;border-radius:10px;padding:13px 24px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.mu-track-btn:hover{background:#f5a623;color:#0a0a0a}
+.mu-track-result{display:none}
+.mu-track-result.show{display:block}
+.mu-track-timeline{display:flex;flex-direction:column;gap:0}
+.mu-track-event{display:flex;gap:16px;padding:16px 0;position:relative}
+.mu-track-event::before{content:'';position:absolute;left:19px;top:40px;bottom:-16px;width:2px;background:#eee}
+.mu-track-event:last-child::before{display:none}
+.mu-track-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1}
+.mu-track-icon.done{background:#d1fae5}
+.mu-track-icon.done svg{fill:#065f46}
+.mu-track-icon.active{background:#FEF3C7}
+.mu-track-icon.active svg{fill:#92400E}
+.mu-track-icon.pending{background:#f5f5f5}
+.mu-track-icon.pending svg{fill:#aaa}
+.mu-track-icon svg{width:18px;height:18px}
+.mu-track-info h4{font-size:14px;font-weight:700;color:#0a0a0a;margin-bottom:2px}
+.mu-track-info p{font-size:12px;color:#888}
+.mu-track-info .time{font-size:11px;color:#aaa;margin-top:2px}
+
+/* ===== CTA ===== */
+.mu-cta{padding:100px 40px;text-align:center;background:#fff;border-top:1px solid #eee;position:relative;overflow:hidden}
+.mu-cta::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:#fffbf0;top:-300px;left:50%;transform:translateX(-50%);z-index:0}
+.mu-cta h2{font-size:48px;font-weight:800;color:#0a0a0a;line-height:1.1;margin-bottom:18px;position:relative;z-index:1}
 .mu-cta h2 em{font-style:normal;color:#f5a623}
-.mu-cta p{font-size:16px;color:#666;margin-bottom:32px}
-.mu-cta-btns{display:flex;gap:12px;justify-content:center}
- 
-/* FOOTER */
-.mu-footer{background:#0a0a0a;padding:48px 40px 24px}
-.mu-footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid #222;margin-bottom:24px;max-width:1100px;margin:0 auto}
-.mu-footer-brand p{font-size:13px;color:#555;line-height:1.6;max-width:240px;margin-top:10px}
-.mu-footer-col h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:14px}
-.mu-footer-col a{display:block;font-size:13px;color:#555;margin-bottom:8px;text-decoration:none}
-.mu-footer-col a:hover{color:#fff}
-.mu-footer-bottom{max-width:1100px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid #222}
-.mu-footer-copy{font-size:12px;color:#444}
+.mu-cta p{font-size:17px;color:#666;margin-bottom:36px;position:relative;z-index:1}
+.mu-cta-btns{display:flex;gap:14px;justify-content:center;position:relative;z-index:1}
+
+/* ===== TOAST ===== */
+#toast{position:fixed;bottom:32px;right:32px;background:#0a0a0a;color:#fff;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:600;z-index:9000;transform:translateY(80px);opacity:0;transition:all 0.4s;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.3);max-width:320px}
+#toast.show{transform:translateY(0);opacity:1}
+#toast .toast-icon{width:20px;height:20px;background:#f5a623;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px}
+
+/* ===== FOOTER ===== */
+.mu-footer{background:#0a0a0a;padding:56px 40px 28px}
+.mu-footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid #181818;max-width:1100px;margin:0 auto}
+.mu-footer-brand p{font-size:13px;color:#444;line-height:1.7;max-width:240px;margin-top:12px}
+.mu-footer-col h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:16px}
+.mu-footer-col a{display:block;font-size:13px;color:#444;margin-bottom:10px;text-decoration:none;transition:color 0.2s}
+.mu-footer-col a:hover{color:#f5a623}
+.mu-footer-bottom{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid #181818}
+.mu-footer-copy{font-size:12px;color:#333}
 .mu-footer-legal{display:flex;gap:20px}
-.mu-footer-legal a{font-size:12px;color:#444;text-decoration:none}
-.mu-footer-legal a:hover{color:#fff}
-.mu-footer-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;color:#fff;margin-bottom:10px}
+.mu-footer-legal a{font-size:12px;color:#333;text-decoration:none;transition:color 0.2s}
+.mu-footer-legal a:hover{color:#f5a623}
+.mu-footer-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+.mu-footer-social{display:flex;gap:10px;margin-top:16px}
+.mu-social-btn{width:36px;height:36px;border-radius:8px;background:#1a1a1a;border:1px solid #2a2a2a;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s}
+.mu-social-btn:hover{background:#f5a623;border-color:#f5a623}
+.mu-social-btn svg{width:16px;height:16px;fill:#fff;transition:fill 0.2s}
+.mu-social-btn:hover svg{fill:#0a0a0a}
+
+/* ===== BACK TO TOP ===== */
+#back-top{position:fixed;bottom:32px;left:32px;width:44px;height:44px;background:#0a0a0a;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:4000;opacity:0;transform:translateY(20px);transition:all 0.3s;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
+#back-top.show{opacity:1;transform:translateY(0)}
+#back-top:hover{background:#f5a623}
+#back-top svg{width:18px;height:18px;fill:#fff;transition:fill 0.2s}
+#back-top:hover svg{fill:#0a0a0a}
 </style>
 </head>
 <body>
- 
-<!-- NAV -->
-<nav class="mu-nav">
-  <a class="mu-logo" href="#">
-    <div class="mu-logo-mark">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">
+    <div class="loader-mark"><svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg></div>
+    Motouber
+  </div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress"></div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+</button>
+
+<!-- TOAST -->
+<div id="toast"><div class="toast-icon">✓</div><span id="toast-msg">Acción realizada</span></div>
+
+<!-- BOOKING MODAL -->
+<div id="booking-modal">
+  <div class="mu-modal">
+    <button class="mu-modal-close" onclick="closeModal()">✕</button>
+    <div id="booking-form-wrap">
+      <div class="mu-modal-steps">
+        <div class="mu-modal-step-dot done" id="mdot1"></div>
+        <div class="mu-modal-step-dot" id="mdot2"></div>
+        <div class="mu-modal-step-dot" id="mdot3"></div>
+      </div>
+      <h2>Solicitar viaje</h2>
+      <p>Completa los datos para que un conductor llegue donde estás</p>
+      <div class="mu-modal-field">
+        <label>¿Dónde estás? (origen)</label>
+        <input type="text" id="m-origin" placeholder="Ej: Carrera 5 #10-20, Fusagasugá">
+      </div>
+      <div class="mu-modal-field">
+        <label>¿A dónde vas? (destino)</label>
+        <input type="text" id="m-dest" placeholder="Ej: Centro Comercial, Parque Principal">
+      </div>
+      <div class="mu-modal-field">
+        <label>Tipo de servicio</label>
+        <select id="m-type">
+          <option value="estandar">Estándar — Económico</option>
+          <option value="premium">Premium — Conductor calificado</option>
+          <option value="moto-carga">Moto carga — Hasta 20kg</option>
+        </select>
+      </div>
+      <div class="mu-modal-field">
+        <label>Método de pago</label>
+        <select id="m-pay">
+          <option value="efectivo">Efectivo</option>
+          <option value="nequi">Nequi</option>
+          <option value="daviplata">Daviplata</option>
+          <option value="tarjeta">Tarjeta</option>
+        </select>
+      </div>
+      <button class="mu-modal-submit" onclick="bookStep2()">Buscar conductor →</button>
     </div>
+    <div id="booking-step2" style="display:none">
+      <div class="mu-modal-steps">
+        <div class="mu-modal-step-dot done"></div>
+        <div class="mu-modal-step-dot done"></div>
+        <div class="mu-modal-step-dot" id="mdot3b"></div>
+      </div>
+      <h2>Conductor encontrado</h2>
+      <p>Un conductor cercano está disponible para tu viaje</p>
+      <div style="background:#f8f8f6;border-radius:14px;padding:20px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+          <div style="width:52px;height:52px;border-radius:50%;background:#72243E;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px">MP</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:#0a0a0a">María Paula</div>
+            <div style="font-size:12px;color:#888">★ 4.9 · Honda CB190 roja · TBM 234</div>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div style="font-size:22px;font-weight:800;color:#f5a623" id="modal-price">$7.200</div>
+            <div style="font-size:11px;color:#aaa">COP estimado</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee">
+            <div style="font-size:20px;font-weight:700;color:#0a0a0a">2 min</div>
+            <div style="font-size:11px;color:#888">tiempo de llegada</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee">
+            <div style="font-size:20px;font-weight:700;color:#0a0a0a" id="modal-dist">—</div>
+            <div style="font-size:11px;color:#888">distancia estimada</div>
+          </div>
+        </div>
+      </div>
+      <button class="mu-modal-submit" onclick="confirmBooking()">Confirmar viaje</button>
+    </div>
+    <div id="booking-success" style="display:none">
+      <div class="success-icon">✓</div>
+      <h3>¡Viaje confirmado!</h3>
+      <p>María Paula está en camino. Llegará en aproximadamente <strong>2 minutos</strong>.</p>
+      <button class="mu-modal-submit" onclick="closeModal()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="mu-nav" id="main-nav">
+  <a class="mu-logo" href="#">
+    <div class="mu-logo-mark"><svg viewBox="0 0 24 24" fill="white"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg></div>
     Motouber
   </a>
   <div class="mu-nav-links">
     <a href="#features">Servicios</a>
-    <a href="#drivers">Conductores</a>
+    <a href="#drivers-section">Conductores</a>
     <a href="#pricing">Precios</a>
-    <a href="#app">App</a>
-    <a href="#footer">Contacto</a>
+    <a href="#tracking">Rastrear</a>
+    <a href="#driver-signup">Trabaja con nosotros</a>
   </div>
   <div class="mu-nav-right">
-    <button class="mu-btn-ghost">Iniciar sesión</button>
-    <button class="mu-btn-solid">Registrarse</button>
+    <button class="mu-btn-ghost" onclick="showToast('Próximamente: inicio de sesión')">Iniciar sesión</button>
+    <button class="mu-btn-solid" onclick="openModal()">Solicitar viaje</button>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <section class="mu-hero">
+  <canvas id="hero-particles" class="mu-hero-particles"></canvas>
   <div class="mu-hero-grid">
     <div class="mu-hero-left">
-      <div class="mu-tag">
-        <div class="mu-tag-dot"></div>
-        <span>Servicio activo en Fusagasugá y Cundinamarca</span>
-      </div>
+      <div class="mu-tag"><div class="mu-tag-dot"></div><span>Servicio activo en Fusagasugá y Cundinamarca</span></div>
       <h1 class="mu-hero-h1">La forma más<br>rápida de<br>moverte en <em>moto</em></h1>
       <p class="mu-hero-p">Conectamos pasajeros con conductores verificados en segundos. Seguro, económico y disponible las 24 horas.</p>
       <div class="mu-hero-btns">
-        <button class="mu-btn-orange">Solicitar viaje ahora</button>
-        <button class="mu-btn-outline-white">Quiero ser conductor</button>
+        <button class="mu-btn-orange" onclick="openModal()">Solicitar viaje ahora</button>
+        <button class="mu-btn-outline-white" onclick="document.getElementById('driver-signup').scrollIntoView({behavior:'smooth'})">Quiero ser conductor</button>
       </div>
     </div>
     <div class="mu-hero-right">
@@ -415,124 +524,101 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
         <div class="mu-phone-notch"></div>
         <div class="mu-phone-screen">
           <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:11px;color:#f5a623;font-weight:600">Motouber</span>
-            <span style="font-size:10px;color:#4ade80;display:flex;align-items:center;gap:4px">
-              <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 2s infinite"></span>En vivo
-            </span>
+            <span style="font-size:11px;color:#f5a623;font-weight:700">Motouber</span>
+            <span style="font-size:10px;color:#4ade80;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;animation:pulse 2s infinite"></span>En vivo</span>
           </div>
           <div class="mu-pmap">
-            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="40" x2="200" y2="40" stroke="#fff" stroke-width="0.5"/>
-              <line x1="0" y1="80" x2="200" y2="80" stroke="#fff" stroke-width="0.5"/>
-              <line x1="0" y1="120" x2="200" y2="120" stroke="#fff" stroke-width="0.5"/>
-              <line x1="50" y1="0" x2="50" y2="160" stroke="#fff" stroke-width="0.5"/>
-              <line x1="100" y1="0" x2="100" y2="160" stroke="#fff" stroke-width="0.5"/>
-              <line x1="150" y1="0" x2="150" y2="160" stroke="#fff" stroke-width="0.5"/>
+            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 200 155">
+              <line x1="0" y1="38" x2="200" y2="38" stroke="#fff" stroke-width="0.5"/>
+              <line x1="0" y1="77" x2="200" y2="77" stroke="#fff" stroke-width="0.5"/>
+              <line x1="0" y1="116" x2="200" y2="116" stroke="#fff" stroke-width="0.5"/>
+              <line x1="50" y1="0" x2="50" y2="155" stroke="#fff" stroke-width="0.5"/>
+              <line x1="100" y1="0" x2="100" y2="155" stroke="#fff" stroke-width="0.5"/>
+              <line x1="150" y1="0" x2="150" y2="155" stroke="#fff" stroke-width="0.5"/>
             </svg>
             <div class="mu-pmap-route"></div>
             <div class="mu-pdot" id="movedot"></div>
-            <div style="position:absolute;top:10px;left:10px;background:#f5a623;color:#0a0a0a;font-size:9px;font-weight:600;padding:3px 7px;border-radius:5px">Conductor a 2 min</div>
-            <div style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.1);color:#fff;font-size:9px;padding:3px 7px;border-radius:5px">Destino</div>
+            <div style="position:absolute;top:8px;left:8px;background:#f5a623;color:#0a0a0a;font-size:9px;font-weight:700;padding:3px 7px;border-radius:5px">Conductor a 2 min</div>
+            <div style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.1);color:#fff;font-size:9px;padding:3px 7px;border-radius:5px">Destino</div>
           </div>
           <div class="mu-pcard">
             <div class="mu-pcard-row"><span class="mu-pcard-label">Conductor</span><span class="mu-pcard-val">María Paula ★ 4.9</span></div>
             <div class="mu-pcard-row"><span class="mu-pcard-label">Distancia</span><span class="mu-pcard-val">3.2 km</span></div>
-            <div class="mu-pcard-row" style="margin-top:8px"><span class="mu-pcard-label">Total estimado</span><span class="mu-pcard-price">$8.500 COP</span></div>
+            <div class="mu-pcard-row" style="margin-top:6px"><span class="mu-pcard-label">Total estimado</span><span class="mu-pcard-price">$8.500 COP</span></div>
           </div>
-          <button class="mu-pbtn">Confirmar viaje</button>
+          <button class="mu-pbtn" onclick="showToast('¡Viaje confirmado en la app!')">Confirmar viaje</button>
         </div>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- STRIPE -->
 <div class="mu-hero-stripe">
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-    Conductores verificados
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-    Respuesta en menos de 3 min
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-    Pago en efectivo o digital
-  </div>
-  <div class="mu-stripe-item">
-    <svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-    Seguro durante el viaje
-  </div>
+  <div class="mu-stripe-item"><svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Conductores verificados</div>
+  <div class="mu-stripe-item"><svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>Respuesta en menos de 3 min</div>
+  <div class="mu-stripe-item"><svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Pago en efectivo o digital</div>
+  <div class="mu-stripe-item"><svg class="mu-stripe-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>Seguro durante el viaje</div>
 </div>
- 
+
 <!-- STATS -->
 <div class="mu-stats">
-  <div class="mu-stat"><div class="mu-stat-num">+12<span>K</span></div><div class="mu-stat-label">Viajes completados</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">4.9<span>★</span></div><div class="mu-stat-label">Calificación promedio</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">&lt;3<span>min</span></div><div class="mu-stat-label">Tiempo de espera</div></div>
-  <div class="mu-stat"><div class="mu-stat-num">24<span>/7</span></div><div class="mu-stat-label">Disponibilidad</div></div>
+  <div class="mu-stat reveal"><div class="mu-stat-num" id="s1">0<span>K</span></div><div class="mu-stat-label">Viajes completados</div></div>
+  <div class="mu-stat reveal reveal-delay-1"><div class="mu-stat-num" id="s2">0.0<span>★</span></div><div class="mu-stat-label">Calificación promedio</div></div>
+  <div class="mu-stat reveal reveal-delay-2"><div class="mu-stat-num">&lt;3<span>min</span></div><div class="mu-stat-label">Tiempo de espera</div></div>
+  <div class="mu-stat reveal reveal-delay-3"><div class="mu-stat-num">24<span>/7</span></div><div class="mu-stat-label">Disponibilidad</div></div>
 </div>
- 
+
 <!-- FEATURES -->
 <div id="features" class="mu-section">
-  <div class="mu-section-eyebrow">Por qué Motouber</div>
-  <div class="mu-section-h2">Tecnología que te <em>mueve</em></div>
+  <div class="mu-section-eyebrow reveal">Por qué Motouber</div>
+  <div class="mu-section-h2 reveal">Tecnología que te <em>mueve</em></div>
   <div class="mu-features">
-    <div class="mu-feat mu-feat-accent">
+    <div class="mu-feat mu-feat-accent reveal">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
       <h3>Rastreo en tiempo real</h3>
-      <p>Sigue tu viaje en el mapa con actualización segundo a segundo. Comparte tu ubicación con familiares.</p>
+      <p>Sigue tu viaje en el mapa segundo a segundo. Comparte tu ubicación con familiares.</p>
     </div>
-    <div class="mu-feat">
+    <div class="mu-feat reveal reveal-delay-1">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
       <h3>Tarifa transparente</h3>
-      <p>Conoce el precio exacto antes de confirmar. Sin cargos ocultos, sin sorpresas al llegar.</p>
+      <p>Conoce el precio exacto antes de confirmar. Sin cargos ocultos.</p>
     </div>
-    <div class="mu-feat">
+    <div class="mu-feat reveal reveal-delay-2">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
       <h3>Seguridad garantizada</h3>
       <p>Cada conductor pasa por verificación de antecedentes, prueba de manejo y revisión de moto.</p>
     </div>
-    <div class="mu-feat">
+    <div class="mu-feat reveal reveal-delay-3">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
       <h3>Soporte 24/7</h3>
-      <p>Equipo de atención disponible todo el día. Resolvemos tu problema en menos de 5 minutos.</p>
+      <p>Equipo de atención disponible todo el día. Resolvemos tu problema en minutos.</p>
     </div>
-    <div class="mu-feat">
+    <div class="mu-feat reveal reveal-delay-4">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.81 18 6 15.21 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg></div>
       <h3>Velocidad extrema</h3>
-      <p>Algoritmo propio que asigna el conductor más cercano. Promedio de asignación: 45 segundos.</p>
+      <p>Algoritmo propio que asigna el conductor más cercano en 45 segundos promedio.</p>
     </div>
-    <div class="mu-feat">
+    <div class="mu-feat reveal reveal-delay-5">
       <div class="mu-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
       <h3>Notificaciones inteligentes</h3>
       <p>Alertas en tiempo real: conductor asignado, en camino, llegó, y calificación post-viaje.</p>
     </div>
   </div>
 </div>
- 
+
 <!-- HOW IT WORKS -->
 <div class="mu-how">
-  <div>
+  <div class="reveal">
     <div class="mu-section-eyebrow">Cómo funciona</div>
     <div class="mu-section-h2" style="margin-bottom:32px">Tu viaje en <em>tres pasos</em></div>
     <div>
-      <div class="mu-step active" onclick="setStep(0)">
-        <div class="mu-step-num">01</div>
-        <div class="mu-step-content"><h4>Solicita tu viaje</h4><p>Ingresa tu destino y confirma tu ubicación actual. El sistema calcula la ruta óptima al instante.</p></div>
-      </div>
-      <div class="mu-step" onclick="setStep(1)">
-        <div class="mu-step-num">02</div>
-        <div class="mu-step-content"><h4>Conecta con un conductor</h4><p>El algoritmo asigna al conductor verificado más cercano. Ves su foto, moto y calificación.</p></div>
-      </div>
-      <div class="mu-step" onclick="setStep(2)">
-        <div class="mu-step-num">03</div>
-        <div class="mu-step-content"><h4>Viaja y califica</h4><p>Llega a tu destino seguro. Al terminar, califica al conductor y recibe tu recibo digital.</p></div>
-      </div>
+      <div class="mu-step active" onclick="setStep(0)"><div class="mu-step-num">01</div><div class="mu-step-content"><h4>Solicita tu viaje</h4><p>Ingresa tu destino y confirma tu ubicación. El sistema calcula la ruta óptima al instante.</p></div></div>
+      <div class="mu-step" onclick="setStep(1)"><div class="mu-step-num">02</div><div class="mu-step-content"><h4>Conecta con un conductor</h4><p>El algoritmo asigna al conductor verificado más cercano. Ves su foto, moto y calificación.</p></div></div>
+      <div class="mu-step" onclick="setStep(2)"><div class="mu-step-num">03</div><div class="mu-step-content"><h4>Viaja y califica</h4><p>Llega seguro. Al terminar, califica al conductor y recibe tu recibo digital.</p></div></div>
     </div>
   </div>
-  <div class="mu-how-visual" id="how-visual">
+  <div class="mu-how-visual reveal reveal-delay-2" id="how-visual">
     <svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60" cy="100" r="16" fill="#f5a623" opacity="0.15"/>
       <circle cx="60" cy="100" r="8" fill="#f5a623"/>
@@ -545,14 +631,129 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
     </svg>
   </div>
 </div>
- 
+
+<!-- TRIP CALCULATOR -->
+<div class="mu-calculator">
+  <div class="mu-calc-inner">
+    <div class="mu-section-eyebrow reveal">Calculadora de tarifas</div>
+    <div class="mu-calc-h2 reveal">¿Cuánto costará tu viaje?</div>
+    <div class="mu-calc-sub reveal">Calcula el precio estimado antes de solicitar</div>
+    <div class="mu-calc-form reveal">
+      <div class="mu-calc-field">
+        <label>Zona de origen</label>
+        <select id="calc-origin" onchange="calcPrice()">
+          <option value="1">Centro</option>
+          <option value="2">Barrio La Palma</option>
+          <option value="3">Zona Industrial</option>
+          <option value="4">Barrio El Consuelo</option>
+          <option value="5">Vereda afueras</option>
+        </select>
+      </div>
+      <div class="mu-calc-field">
+        <label>Zona de destino</label>
+        <select id="calc-dest" onchange="calcPrice()">
+          <option value="1">Centro</option>
+          <option value="2">Terminal de Transporte</option>
+          <option value="3">Hospital San Rafael</option>
+          <option value="4">Universidad de Cundinamarca</option>
+          <option value="5">Vereda Paquillo</option>
+        </select>
+      </div>
+      <div class="mu-calc-field">
+        <label>Tipo de servicio</label>
+        <select id="calc-type" onchange="calcPrice()">
+          <option value="1">Estándar</option>
+          <option value="1.3">Premium</option>
+          <option value="1.5">Moto carga</option>
+        </select>
+      </div>
+      <div class="mu-calc-field">
+        <label>Hora del día</label>
+        <select id="calc-time" onchange="calcPrice()">
+          <option value="1">Día normal (6am–8pm)</option>
+          <option value="1.2">Hora pico (7–9am, 5–7pm)</option>
+          <option value="1.4">Nocturno (8pm–12am)</option>
+          <option value="1.6">Madrugada (12am–6am)</option>
+        </select>
+      </div>
+    </div>
+    <div class="mu-calc-result reveal">
+      <div class="mu-calc-res-item"><div class="mu-calc-res-label">Precio estimado</div><div class="mu-calc-res-val accent" id="calc-price">$5.200</div></div>
+      <div class="mu-calc-res-item"><div class="mu-calc-res-label">Distancia aprox.</div><div class="mu-calc-res-val" id="calc-dist">2.1 km</div></div>
+      <div class="mu-calc-res-item"><div class="mu-calc-res-label">Tiempo estimado</div><div class="mu-calc-res-val" id="calc-time-res">8 min</div></div>
+      <div class="mu-calc-res-item"><div class="mu-calc-res-label">Conductor en</div><div class="mu-calc-res-val" id="calc-eta">3 min</div></div>
+    </div>
+    <button class="mu-calc-btn reveal" onclick="openModalWithPrice()">Solicitar este viaje →</button>
+  </div>
+</div>
+
+<!-- LIVE MAP -->
+<div class="mu-map-section">
+  <div class="mu-map-inner">
+    <div class="mu-section-eyebrow reveal">Conductores en vivo</div>
+    <div class="mu-section-h2 reveal">Mira los conductores <em>cerca de ti</em></div>
+    <div class="mu-map-wrap reveal" id="live-map">
+      <!-- Roads -->
+      <div class="mu-map-road" style="left:0;right:0;top:48%;height:3px;background:#253040"></div>
+      <div class="mu-map-road" style="top:0;bottom:0;left:35%;width:3px;background:#253040"></div>
+      <div class="mu-map-road" style="top:0;bottom:0;left:65%;width:3px;background:#253040"></div>
+      <div class="mu-map-road" style="left:0;right:0;top:25%;height:2px;background:#1e2d3d"></div>
+      <div class="mu-map-road" style="left:0;right:0;top:72%;height:2px;background:#1e2d3d"></div>
+      <!-- Blocks -->
+      <div style="position:absolute;left:36%;top:26%;width:28%;height:21%;background:#1a2333;border-radius:4px;opacity:0.5"></div>
+      <div style="position:absolute;left:36%;top:49%;width:28%;height:22%;background:#1a2333;border-radius:4px;opacity:0.5"></div>
+      <div style="position:absolute;left:2%;top:26%;width:32%;height:45%;background:#1a2333;border-radius:4px;opacity:0.3"></div>
+      <div style="position:absolute;left:66%;top:26%;width:32%;height:45%;background:#1a2333;border-radius:4px;opacity:0.3"></div>
+      <!-- User dot -->
+      <div class="mu-map-user" style="left:50%;top:48%;transform:translate(-50%,-50%)"></div>
+      <!-- Drivers -->
+      <div class="mu-map-driver" id="md1" style="left:22%;top:30%" onclick="selectDriver('MP','María Paula','4.9','2 min','Honda CB190')">
+        <div class="mu-map-driver-label">María Paula ★4.9</div>
+        <svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg>
+      </div>
+      <div class="mu-map-driver" id="md2" style="left:70%;top:20%" onclick="selectDriver('CM','Carlos M.','4.7','4 min','Yamaha YBR')">
+        <div class="mu-map-driver-label">Carlos M. ★4.7</div>
+        <svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg>
+      </div>
+      <div class="mu-map-driver" id="md3" style="left:78%;top:65%" onclick="selectDriver('LR','Luis R.','4.8','3 min','Bajaj Pulsar')">
+        <div class="mu-map-driver-label">Luis R. ★4.8</div>
+        <svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg>
+      </div>
+      <div class="mu-map-driver" id="md4" style="left:15%;top:70%" onclick="selectDriver('AN','Andrés N.','4.6','5 min','Honda CB125')">
+        <div class="mu-map-driver-label">Andrés N. ★4.6</div>
+        <svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2zm-9.5 0l.5-2h4l.5 2H9.5z"/></svg>
+      </div>
+      <!-- Overlay -->
+      <div class="mu-map-overlay">
+        <div class="mu-map-badge"><strong id="map-count">4</strong>conductores activos cerca</div>
+        <div class="mu-map-controls">
+          <button class="mu-map-ctrl active" onclick="filterDrivers('todos',this)">Todos</button>
+          <button class="mu-map-ctrl" onclick="filterDrivers('rapido',this)">Más rápido</button>
+          <button class="mu-map-ctrl" onclick="filterDrivers('mejor',this)">Mejor rating</button>
+        </div>
+      </div>
+      <!-- Driver info panel -->
+      <div class="mu-map-driver-info" id="driver-info-panel">
+        <div class="mu-map-di-left">
+          <div class="mu-map-di-av" id="di-av">MP</div>
+          <div>
+            <div class="mu-map-di-name" id="di-name">María Paula</div>
+            <div class="mu-map-di-info" id="di-info">★ 4.9 · Honda CB190 · 2 min</div>
+          </div>
+        </div>
+        <button class="mu-map-di-btn" onclick="openModal()">Solicitar →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PRICING -->
 <div id="pricing" class="mu-pricing">
   <div class="mu-pricing-inner">
-    <div class="mu-section-eyebrow">Planes y tarifas</div>
-    <div class="mu-section-h2">Elige tu plan <em>ideal</em></div>
+    <div class="mu-section-eyebrow reveal">Planes y tarifas</div>
+    <div class="mu-section-h2 reveal">Elige tu plan <em>ideal</em></div>
     <div class="mu-plans">
-      <div class="mu-plan">
+      <div class="mu-plan reveal">
         <div class="mu-plan-name">Básico</div>
         <div class="mu-plan-price">Gratis <span>/siempre</span></div>
         <div class="mu-plan-desc">Para usuarios ocasionales que quieren moverse sin compromisos.</div>
@@ -561,9 +762,9 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Rastreo básico</div>
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Pago en efectivo</div>
         </div>
-        <button class="mu-plan-btn">Empezar gratis</button>
+        <button class="mu-plan-btn" onclick="showToast('Plan Básico seleccionado — ¡es gratis!')">Empezar gratis</button>
       </div>
-      <div class="mu-plan featured">
+      <div class="mu-plan featured reveal reveal-delay-1">
         <div class="mu-plan-badge">Más popular</div>
         <div class="mu-plan-name">Pro</div>
         <div class="mu-plan-price">$29.900 <span>COP/mes</span></div>
@@ -574,9 +775,9 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>10% descuento en viajes</div>
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Historial de viajes</div>
         </div>
-        <button class="mu-plan-btn">Activar Pro</button>
+        <button class="mu-plan-btn" onclick="showToast('¡Plan Pro activado! Redirigiendo al pago...')">Activar Pro</button>
       </div>
-      <div class="mu-plan">
+      <div class="mu-plan reveal reveal-delay-2">
         <div class="mu-plan-name">Empresarial</div>
         <div class="mu-plan-price">A medida</div>
         <div class="mu-plan-desc">Para empresas que necesitan movilizar equipos con facturación centralizada.</div>
@@ -586,18 +787,36 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Facturación electrónica</div>
           <div class="mu-plan-feat"><div class="mu-plan-feat-check"><svg viewBox="0 0 10 10"><path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#065f46" stroke-width="1.5" fill="none"/></svg></div>Soporte dedicado</div>
         </div>
-        <button class="mu-plan-btn">Contactar ventas</button>
+        <button class="mu-plan-btn" onclick="showToast('Te contactaremos pronto para el plan empresarial')">Contactar ventas</button>
       </div>
     </div>
   </div>
 </div>
- 
-<!-- DRIVERS / TEAM -->
-<div id="drivers" class="mu-drivers">
-  <div class="mu-section-eyebrow">Equipo</div>
-  <div class="mu-section-h2">Las personas que <em>hacen posible</em> Motouber</div>
+
+<!-- TRIP TRACKING -->
+<div id="tracking" class="mu-tracking">
+  <div class="mu-tracking-inner">
+    <div class="mu-section-eyebrow reveal">Rastrear viaje</div>
+    <div class="mu-section-h2 reveal">¿Dónde está tu <em>conductor</em>?</div>
+    <div class="mu-track-box reveal">
+      <div class="mu-track-input-row">
+        <input type="text" class="mu-track-input" id="track-code" placeholder="Ingresa tu código de viaje (Ej: MTB-2024-001)">
+        <button class="mu-track-btn" onclick="trackTrip()">Rastrear →</button>
+      </div>
+      <div style="font-size:12px;color:#aaa;margin-bottom:16px">Prueba con: MTB-2024-001 · MTB-2024-042 · MTB-2024-087</div>
+      <div class="mu-track-result" id="track-result">
+        <div class="mu-track-timeline" id="track-timeline"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div id="drivers-section" class="mu-drivers-section">
+  <div class="mu-section-eyebrow reveal">Equipo</div>
+  <div class="mu-section-h2 reveal">Las personas que <em>hacen posible</em> Motouber</div>
   <div class="mu-driver-grid">
-    <div class="mu-driver-card">
+    <div class="mu-driver-card reveal">
       <div class="mu-driver-top mu-driver-bg-d"></div>
       <div class="mu-driver-avatar" style="background:#0C447C">DS</div>
       <div class="mu-driver-body">
@@ -607,7 +826,7 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
         <div class="mu-driver-trips">Construye y mantiene la plataforma. <strong>+200 commits</strong> en el proyecto.</div>
       </div>
     </div>
-    <div class="mu-driver-card">
+    <div class="mu-driver-card reveal reveal-delay-1">
       <div class="mu-driver-top mu-driver-bg-mp"></div>
       <div class="mu-driver-avatar" style="background:#72243E">MP</div>
       <div class="mu-driver-body">
@@ -617,7 +836,7 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
         <div class="mu-driver-trips">Rápida, segura y puntual. <strong>+340 viajes</strong> completados.</div>
       </div>
     </div>
-    <div class="mu-driver-card">
+    <div class="mu-driver-card reveal reveal-delay-2">
       <div class="mu-driver-top mu-driver-bg-c"></div>
       <div class="mu-driver-avatar" style="background:#0F6E56">CM</div>
       <div class="mu-driver-body">
@@ -629,51 +848,108 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
     </div>
   </div>
 </div>
- 
+
 <!-- TESTIMONIALS -->
 <div class="mu-testimonials">
   <div class="mu-test-inner">
-    <div class="mu-section-eyebrow">Opiniones</div>
-    <div class="mu-section-h2">Lo que dicen nuestros <em>usuarios</em></div>
+    <div class="mu-section-eyebrow reveal">Opiniones</div>
+    <div class="mu-section-h2 reveal">Lo que dicen nuestros <em>usuarios</em></div>
     <div class="mu-test-grid">
-      <div class="mu-test-card">
+      <div class="mu-test-card reveal" onclick="likeReview(this)">
         <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Llegué al trabajo en la mitad del tiempo. El conductor fue muy amable y la app súper fácil de usar. Definitivamente mi forma favorita de moverme por la ciudad.</div>
+        <div class="mu-test-quote">Llegué al trabajo en la mitad del tiempo. El conductor fue muy amable y la app súper fácil. Definitivamente mi forma favorita de moverme.</div>
         <div class="mu-test-author"><div class="mu-test-av" style="background:#534AB7">LG</div><div><div class="mu-test-name">Laura G.</div><div class="mu-test-city">Fusagasugá</div></div></div>
+        <div class="mu-test-helpful"><button onclick="likeReview(event,this)">👍</button><span class="likes">12</span> personas encontraron útil esta reseña</div>
       </div>
-      <div class="mu-test-card">
+      <div class="mu-test-card reveal reveal-delay-1" onclick="likeReview(this)">
         <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Precio justo y llegan rapidísimo. Lo uso todos los días para ir a clase. Nunca he tenido un problema y el soporte responde al instante cuando se necesita.</div>
+        <div class="mu-test-quote">Precio justo y llegan rapidísimo. Lo uso todos los días para ir a clase. Nunca he tenido un problema, el soporte responde al instante.</div>
         <div class="mu-test-author"><div class="mu-test-av" style="background:#0F6E56">JR</div><div><div class="mu-test-name">Juan R.</div><div class="mu-test-city">Silvania</div></div></div>
+        <div class="mu-test-helpful"><button onclick="likeReview(event,this)">👍</button><span class="likes">8</span> personas encontraron útil esta reseña</div>
       </div>
-      <div class="mu-test-card">
+      <div class="mu-test-card reveal reveal-delay-2" onclick="likeReview(this)">
         <div class="mu-test-stars"><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div><div class="mu-star"></div></div>
-        <div class="mu-test-quote">Como madre me da mucha tranquilidad poder rastrear el viaje en tiempo real. Los conductores siempre son amables, puntuales y muy profesionales.</div>
+        <div class="mu-test-quote">Como madre me da mucha tranquilidad poder rastrear el viaje en tiempo real. Conductores siempre amables y puntuales.</div>
         <div class="mu-test-author"><div class="mu-test-av" style="background:#993C1D">AM</div><div><div class="mu-test-name">Andrea M.</div><div class="mu-test-city">Cundinamarca</div></div></div>
+        <div class="mu-test-helpful"><button onclick="likeReview(event,this)">👍</button><span class="likes">21</span> personas encontraron útil esta reseña</div>
       </div>
     </div>
   </div>
 </div>
- 
+
+<!-- DRIVER SIGNUP -->
+<div id="driver-signup" class="mu-driver-signup">
+  <div class="mu-ds-inner">
+    <div class="mu-ds-left reveal">
+      <div class="mu-section-eyebrow">Trabaja con nosotros</div>
+      <div class="mu-ds-h2">Gana dinero<br>manejando en <em>Motouber</em></div>
+      <div class="mu-ds-p">Sé tu propio jefe. Trabaja cuando quieras y gana más que con la competencia.</div>
+      <div class="mu-ds-benefits">
+        <div class="mu-ds-benefit">
+          <div class="mu-ds-benefit-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+          <div><div class="mu-ds-benefit-title">Ganancias promedio</div><div class="mu-ds-benefit-val">$80.000 – $150.000 COP/día</div></div>
+        </div>
+        <div class="mu-ds-benefit">
+          <div class="mu-ds-benefit-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+          <div><div class="mu-ds-benefit-title">Horarios flexibles</div><div class="mu-ds-benefit-val">Trabaja cuando quieras, sin jefe</div></div>
+        </div>
+        <div class="mu-ds-benefit">
+          <div class="mu-ds-benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+          <div><div class="mu-ds-benefit-title">Seguro incluido</div><div class="mu-ds-benefit-val">Cobertura durante todos tus viajes</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mu-ds-form reveal reveal-delay-2">
+      <h3>Registrarse como conductor</h3>
+      <p>Completa el formulario y te contactamos en 24 horas</p>
+      <div id="ds-form-content">
+        <div class="mu-ds-field"><label>Nombre completo</label><input type="text" id="ds-name" placeholder="Tu nombre completo"></div>
+        <div class="mu-ds-field"><label>Teléfono</label><input type="tel" id="ds-phone" placeholder="Ej: 310 555 1234"></div>
+        <div class="mu-ds-field"><label>Ciudad</label>
+          <select id="ds-city">
+            <option>Fusagasugá</option><option>Silvania</option><option>Arbeláez</option><option>Pandi</option><option>Otra</option>
+          </select>
+        </div>
+        <div class="mu-ds-field"><label>Tipo de moto</label>
+          <select id="ds-moto">
+            <option>Honda CB125F</option><option>Honda CB190R</option><option>Yamaha YBR125</option><option>Bajaj Pulsar 135</option><option>AKT 125</option><option>Otra</option>
+          </select>
+        </div>
+        <div class="mu-ds-field"><label>Licencia de conducción</label>
+          <select id="ds-license">
+            <option value="A2">Categoría A2</option><option value="B1">Categoría B1</option><option value="A1">Categoría A1</option>
+          </select>
+        </div>
+        <button class="mu-ds-submit" onclick="submitDriverForm()">Enviar solicitud →</button>
+      </div>
+      <div id="ds-success" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:48px;margin-bottom:16px">✅</div>
+        <h3 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px">¡Solicitud enviada!</h3>
+        <p style="font-size:14px;color:#666">Te contactaremos en las próximas 24 horas al número registrado.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- APP SECTION -->
 <div id="app" class="mu-app">
   <div class="mu-app-inner">
-    <div>
+    <div class="reveal">
       <div class="mu-section-eyebrow">Descarga la app</div>
       <div class="mu-app-h2">Motouber en tu<br>bolsillo, siempre</div>
-      <div class="mu-app-p">Descarga la app y ten tu mototaxi a un toque. Disponible para Android e iOS con actualizaciones constantes.</div>
+      <div class="mu-app-p">Descarga la app y ten tu mototaxi a un toque. Disponible para Android e iOS.</div>
       <div class="mu-app-stores">
-        <div class="mu-store-btn">
+        <div class="mu-store-btn" onclick="showToast('App Store — Próximamente disponible')">
           <svg class="mu-store-icon" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.2.07 2.03.52 2.72.56.69-.05 2-.56 3.4-.48 1.35.08 2.36.57 3.01 1.41-2.65 1.47-2.02 5.14.37 6.25-.44 1.26-1.05 2.49-1.5 3.14zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           <div><div class="mu-store-sub">Disponible en</div><div class="mu-store-name">App Store</div></div>
         </div>
-        <div class="mu-store-btn">
+        <div class="mu-store-btn" onclick="showToast('Google Play — Próximamente disponible')">
           <svg class="mu-store-icon" viewBox="0 0 24 24"><path d="M3.18 23.76c.35.2.75.25 1.13.14l11.5-11.5L12 8.59 3.18 23.76zm17.31-11.88c.3-.21.51-.57.51-.99s-.21-.78-.5-.99L18.4 9l-3.13 3.12 3.12 3.13 2.1-1.37zM4.31.14a1.4 1.4 0 00-1.13.14L12 8.59l3.81-3.81L4.31.14zM3 1.83v20.35L15.19 12 3 1.83z"/></svg>
           <div><div class="mu-store-sub">Disponible en</div><div class="mu-store-name">Google Play</div></div>
         </div>
       </div>
     </div>
-    <div class="mu-app-metrics">
+    <div class="mu-app-metrics reveal reveal-delay-1">
       <div class="mu-app-metric"><div class="mu-app-metric-num">4.8<span>★</span></div><div class="mu-app-metric-label">Rating en tiendas</div></div>
       <div class="mu-app-metric"><div class="mu-app-metric-num">12<span>K+</span></div><div class="mu-app-metric-label">Descargas totales</div></div>
       <div class="mu-app-metric"><div class="mu-app-metric-num">98<span>%</span></div><div class="mu-app-metric-label">Viajes exitosos</div></div>
@@ -681,17 +957,17 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
     </div>
   </div>
 </div>
- 
+
 <!-- CTA FINAL -->
 <div class="mu-cta">
-  <h2>¿Listo para tu <em>primer viaje</em>?</h2>
-  <p>Únete a miles de usuarios que ya viajan más rápido y seguro con Motouber.</p>
-  <div class="mu-cta-btns">
-    <button class="mu-btn-orange">Solicitar viaje ahora</button>
-    <button class="mu-btn-ghost">Ser conductor</button>
+  <h2 class="reveal">¿Listo para tu <em>primer viaje</em>?</h2>
+  <p class="reveal">Únete a miles de usuarios que ya viajan más rápido y seguro con Motouber.</p>
+  <div class="mu-cta-btns reveal">
+    <button class="mu-btn-orange" onclick="openModal()">Solicitar viaje ahora</button>
+    <button class="mu-btn-ghost" onclick="document.getElementById('driver-signup').scrollIntoView({behavior:'smooth'})">Ser conductor</button>
   </div>
 </div>
- 
+
 <!-- FOOTER -->
 <div id="footer" class="mu-footer">
   <div class="mu-footer-top">
@@ -701,63 +977,351 @@ body{font-family:Arial,sans-serif;background:#fff;color:#0a0a0a}
         Motouber
       </div>
       <p>Conectando personas con conductores de confianza en Cundinamarca desde 2026.</p>
+      <div class="mu-footer-social">
+        <div class="mu-social-btn" onclick="showToast('Instagram — @motouber_col')"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+        <div class="mu-social-btn" onclick="showToast('WhatsApp — +57 300 000 0000')"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <div class="mu-social-btn" onclick="showToast('TikTok — @motouber')"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.27 8.27 0 004.83 1.54V6.85a4.85 4.85 0 01-1.06-.16z"/></svg></div>
+      </div>
     </div>
     <div class="mu-footer-col">
       <h4>Producto</h4>
-      <a href="#">Solicitar viaje</a>
-      <a href="#">Ser conductor</a>
-      <a href="#">Planes y precios</a>
-      <a href="#">Empresas</a>
+      <a href="#" onclick="openModal();return false">Solicitar viaje</a>
+      <a href="#driver-signup">Ser conductor</a>
+      <a href="#pricing">Planes y precios</a>
+      <a href="#" onclick="showToast('Próximamente: portal empresarial');return false">Empresas</a>
     </div>
     <div class="mu-footer-col">
       <h4>Empresa</h4>
-      <a href="#">Sobre nosotros</a>
-      <a href="#">Blog</a>
-      <a href="#">Carreras</a>
-      <a href="#">Prensa</a>
+      <a href="#drivers-section">Equipo</a>
+      <a href="#" onclick="showToast('Blog próximamente');return false">Blog</a>
+      <a href="#driver-signup">Trabaja con nosotros</a>
+      <a href="#" onclick="showToast('Prensa: prensa@motouber.co');return false">Prensa</a>
     </div>
     <div class="mu-footer-col">
       <h4>Soporte</h4>
-      <a href="#">Centro de ayuda</a>
-      <a href="#">Contacto</a>
-      <a href="#">Seguridad</a>
-      <a href="#">Estado del servicio</a>
+      <a href="#tracking">Rastrear viaje</a>
+      <a href="#" onclick="showToast('WhatsApp: +57 300 000 0000');return false">Contacto</a>
+      <a href="#features">Seguridad</a>
+      <a href="#" onclick="showToast('Estado: todos los sistemas operativos ✓');return false">Estado del servicio</a>
     </div>
   </div>
-  <div class="mu-footer-bottom">
+  <div class="mu-footer-bottom" style="max-width:1100px;margin:28px auto 0">
     <div class="mu-footer-copy">© 2026 Motouber SAS. Fusagasugá, Cundinamarca, Colombia.</div>
     <div class="mu-footer-legal">
-      <a href="#">Privacidad</a>
-      <a href="#">Términos</a>
-      <a href="#">Cookies</a>
+      <a href="#" onclick="showToast('Política de privacidad');return false">Privacidad</a>
+      <a href="#" onclick="showToast('Términos y condiciones');return false">Términos</a>
+      <a href="#" onclick="showToast('Política de cookies');return false">Cookies</a>
     </div>
   </div>
 </div>
- 
+
 <script>
-var stepVisuals = [
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="100" r="16" fill="#f5a623" opacity="0.15"/><circle cx="60" cy="100" r="8" fill="#f5a623"/><text x="60" y="130" text-anchor="middle" font-size="11" fill="#888">Tú</text><line x1="76" y1="100" x2="180" y2="100" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="6,4"/><circle cx="200" cy="100" r="16" fill="#0C447C" opacity="0.2"/><circle cx="200" cy="100" r="8" fill="#378ADD"/><text x="200" y="130" text-anchor="middle" font-size="11" fill="#888">Conductor</text><text x="140" y="90" text-anchor="middle" font-size="10" fill="#f5a623">Buscando...</text></svg>',
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><rect x="80" y="55" width="120" height="90" rx="10" fill="#1e2530"/><text x="140" y="92" text-anchor="middle" font-size="13" fill="#fff" font-weight="600">María Paula</text><text x="140" y="110" text-anchor="middle" font-size="10" fill="#f5a623">★ 4.9  •  A 2 min</text><text x="140" y="128" text-anchor="middle" font-size="10" fill="#888">Honda CB190 - ABC 123</text></svg>',
-  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="88" r="32" fill="#4ade80" opacity="0.15"/><circle cx="140" cy="88" r="20" fill="#4ade80"/><text x="140" y="96" text-anchor="middle" font-size="20" fill="#fff" font-weight="600">✓</text><text x="140" y="140" text-anchor="middle" font-size="13" fill="#555">Viaje completado</text><text x="140" y="158" text-anchor="middle" font-size="11" fill="#f5a623">Recibo enviado a tu correo</text></svg>'
-];
- 
-function setStep(i) {
-  var steps = document.querySelectorAll('.mu-step');
-  for (var j = 0; j < steps.length; j++) {
-    steps[j].classList.toggle('active', j === i);
-  }
-  document.getElementById('how-visual').innerHTML = stepVisuals[i];
+// ===== LOADER =====
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('loader').classList.add('done');
+  }, 1600);
+});
+
+// ===== CURSOR =====
+var cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', function(e) {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('button,a,.mu-feat,.mu-driver-card,.mu-test-card,.mu-map-driver,.mu-plan').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { cursor.classList.add('big'); });
+  el.addEventListener('mouseleave', function() { cursor.classList.remove('big'); });
+});
+
+// ===== SCROLL =====
+window.addEventListener('scroll', function() {
+  var scrolled = window.scrollY;
+  var total = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
+  document.getElementById('main-nav').classList.toggle('scrolled', scrolled > 50);
+  document.getElementById('back-top').classList.toggle('show', scrolled > 400);
+  checkReveal();
+});
+
+// ===== REVEAL =====
+function checkReveal() {
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    var top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 80) el.classList.add('visible');
+  });
 }
- 
+checkReveal();
+
+// ===== HERO ANIMATION (dot) =====
 var dot = document.getElementById('movedot');
 var x = 0;
 if (dot) {
   setInterval(function() {
     x = (x + 1) % 100;
-    dot.style.left = (20 + (x / 100) * 140) + 'px';
+    dot.style.left = (14 + (x / 100) * 148) + 'px';
   }, 40);
+}
+
+// ===== HERO PARTICLES =====
+var canvas = document.getElementById('hero-particles');
+var ctx = canvas.getContext('2d');
+var particles = [];
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+for (var i = 0; i < 40; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + 0.5,
+    dx: (Math.random() - 0.5) * 0.4,
+    dy: (Math.random() - 0.5) * 0.4,
+    o: Math.random() * 0.4 + 0.1
+  });
+}
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(function(p) {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(245,166,35,' + p.o + ')';
+    ctx.fill();
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+  });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// ===== STATS COUNTER =====
+var counted = false;
+function countStats() {
+  if (counted) return;
+  var s1 = document.getElementById('s1');
+  var s2 = document.getElementById('s2');
+  if (!s1) return;
+  var rect = s1.getBoundingClientRect();
+  if (rect.top > window.innerHeight) return;
+  counted = true;
+  var v = 0;
+  var t = setInterval(function() {
+    v += 0.3; if (v >= 12) { v = 12; clearInterval(t); }
+    s1.innerHTML = '+' + Math.round(v) + '<span>K</span>';
+  }, 40);
+  var v2 = 0;
+  var t2 = setInterval(function() {
+    v2 += 0.1; if (v2 >= 4.9) { v2 = 4.9; clearInterval(t2); }
+    s2.innerHTML = v2.toFixed(1) + '<span>★</span>';
+  }, 30);
+}
+window.addEventListener('scroll', countStats);
+
+// ===== HOW IT WORKS =====
+var stepVisuals = [
+  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="100" r="20" fill="#f5a623" opacity="0.1"/><circle cx="60" cy="100" r="10" fill="#f5a623"/><text x="60" y="130" text-anchor="middle" font-size="11" fill="#888">Tú</text><line x1="76" y1="100" x2="180" y2="100" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="6,4"/><circle cx="200" cy="100" r="20" fill="#0C447C" opacity="0.12"/><circle cx="200" cy="100" r="10" fill="#378ADD"/><text x="200" y="130" text-anchor="middle" font-size="11" fill="#888">Conductor</text><text x="140" y="88" text-anchor="middle" font-size="11" fill="#f5a623" font-weight="600">Buscando...</text><text x="140" y="162" text-anchor="middle" font-size="10" fill="#ccc">Sistema asignando conductor</text></svg>',
+  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><rect x="70" y="50" width="140" height="100" rx="12" fill="#1e2530"/><text x="140" y="87" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">María Paula</text><text x="140" y="107" text-anchor="middle" font-size="11" fill="#f5a623">★ 4.9 · A 2 minutos</text><text x="140" y="125" text-anchor="middle" font-size="10" fill="#888">Honda CB190 · TBM 234</text><circle cx="140" cy="170" r="6" fill="#4ade80"/><text x="155" y="174" font-size="10" fill="#4ade80">En camino</text></svg>',
+  '<svg viewBox="0 0 280 200" width="280" height="200" xmlns="http://www.w3.org/2000/svg"><circle cx="140" cy="85" r="36" fill="#4ade80" opacity="0.1"/><circle cx="140" cy="85" r="22" fill="#4ade80"/><text x="140" y="93" text-anchor="middle" font-size="22" fill="#fff" font-weight="700">✓</text><text x="140" y="138" text-anchor="middle" font-size="13" fill="#555" font-weight="600">¡Viaje completado!</text><text x="140" y="158" text-anchor="middle" font-size="11" fill="#f5a623">Recibo enviado a tu correo</text><text x="140" y="175" text-anchor="middle" font-size="10" fill="#aaa">Califica tu experiencia</text></svg>'
+];
+function setStep(i) {
+  document.querySelectorAll('.mu-step').forEach(function(s, j) { s.classList.toggle('active', j === i); });
+  document.getElementById('how-visual').innerHTML = stepVisuals[i];
+}
+
+// ===== CALCULATOR =====
+function calcPrice() {
+  var orig = parseInt(document.getElementById('calc-origin').value);
+  var dest = parseInt(document.getElementById('calc-dest').value);
+  var type = parseFloat(document.getElementById('calc-type').value);
+  var time = parseFloat(document.getElementById('calc-time').value);
+  var base = 3500;
+  var dist = Math.abs(orig - dest) * 0.8 + 1.2;
+  var perKm = 1200;
+  var price = Math.round((base + dist * perKm) * type * time / 100) * 100;
+  var mins = Math.round(dist * 3 + 2);
+  var eta = Math.round(Math.random() * 2 + 1.5);
+  document.getElementById('calc-price').textContent = '$' + price.toLocaleString('es-CO');
+  document.getElementById('calc-dist').textContent = dist.toFixed(1) + ' km';
+  document.getElementById('calc-time-res').textContent = mins + ' min';
+  document.getElementById('calc-eta').textContent = eta + ' min';
+}
+calcPrice();
+
+// ===== MODAL =====
+var currentPrice = '$7.200';
+function openModal() {
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openModalWithPrice() {
+  currentPrice = document.getElementById('calc-price').textContent;
+  document.getElementById('modal-price').textContent = currentPrice;
+  var dist = document.getElementById('calc-dist').textContent;
+  document.getElementById('modal-dist').textContent = dist;
+  openModal();
+}
+function closeModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    document.getElementById('booking-form-wrap').style.display = 'block';
+    document.getElementById('booking-step2').style.display = 'none';
+    document.getElementById('booking-success').style.display = 'none';
+  }, 400);
+}
+document.getElementById('booking-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+function bookStep2() {
+  var origin = document.getElementById('m-origin').value.trim();
+  var dest = document.getElementById('m-dest').value.trim();
+  if (!origin || !dest) { showToast('Por favor ingresa origen y destino'); return; }
+  document.getElementById('booking-form-wrap').style.display = 'none';
+  document.getElementById('booking-step2').style.display = 'block';
+  var dist = (Math.random() * 4 + 1).toFixed(1) + ' km';
+  document.getElementById('modal-dist').textContent = dist;
+}
+function confirmBooking() {
+  document.getElementById('booking-step2').style.display = 'none';
+  document.getElementById('booking-success').style.display = 'block';
+  showToast('🏍️ María Paula está en camino — 2 min');
+}
+
+// ===== MAP =====
+function selectDriver(initials, name, rating, eta, moto) {
+  document.getElementById('di-av').textContent = initials;
+  document.getElementById('di-name').textContent = name;
+  document.getElementById('di-info').textContent = '★ ' + rating + ' · ' + moto + ' · ' + eta;
+  document.getElementById('driver-info-panel').classList.add('show');
+}
+function filterDrivers(type, btn) {
+  document.querySelectorAll('.mu-map-ctrl').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var drivers = document.querySelectorAll('.mu-map-driver');
+  var count = 0;
+  drivers.forEach(function(d) {
+    if (type === 'rapido') {
+      var show = d.id === 'md1' || d.id === 'md3';
+      d.style.opacity = show ? '1' : '0.2';
+      if (show) count++;
+    } else if (type === 'mejor') {
+      var show2 = d.id === 'md1' || d.id === 'md3';
+      d.style.opacity = show2 ? '1' : '0.2';
+      if (show2) count++;
+    } else {
+      d.style.opacity = '1'; count++;
+    }
+  });
+  if (type === 'todos') count = 4;
+  document.getElementById('map-count').textContent = count;
+  document.getElementById('driver-info-panel').classList.remove('show');
+}
+
+// Animate map drivers
+var mapDrivers = [
+  {id:'md1', x:22, y:30, dx:0.03, dy:0.02},
+  {id:'md2', x:70, y:20, dx:-0.04, dy:0.03},
+  {id:'md3', x:78, y:65, dx:-0.02, dy:-0.04},
+  {id:'md4', x:15, y:70, dx:0.05, dy:-0.02}
+];
+setInterval(function() {
+  mapDrivers.forEach(function(d) {
+    d.x += d.dx + (Math.random()-0.5)*0.1;
+    d.y += d.dy + (Math.random()-0.5)*0.1;
+    if (d.x < 5 || d.x > 90) d.dx *= -1;
+    if (d.y < 5 || d.y > 88) d.dy *= -1;
+    var el = document.getElementById(d.id);
+    if (el) { el.style.left = d.x + '%'; el.style.top = d.y + '%'; }
+  });
+}, 100);
+
+// ===== TRACKING =====
+var tripData = {
+  'MTB-2024-001': {status:'completed', events:[
+    {icon:'check',type:'done',title:'Solicitud recibida',desc:'Viaje solicitado desde Centro',time:'10:32 AM'},
+    {icon:'check',type:'done',title:'Conductor asignado',desc:'María Paula · Honda CB190',time:'10:33 AM'},
+    {icon:'check',type:'done',title:'Conductor en camino',desc:'A 0.8 km de tu ubicación',time:'10:34 AM'},
+    {icon:'check',type:'done',title:'Conductor llegó',desc:'Te está esperando en el punto',time:'10:36 AM'},
+    {icon:'check',type:'done',title:'Viaje completado',desc:'Destino alcanzado · $8.500 COP',time:'10:52 AM'}
+  ]},
+  'MTB-2024-042': {status:'active', events:[
+    {icon:'check',type:'done',title:'Solicitud recibida',desc:'Viaje solicitado desde Barrio El Consuelo',time:'2:14 PM'},
+    {icon:'check',type:'done',title:'Conductor asignado',desc:'Carlos M. · Yamaha YBR',time:'2:15 PM'},
+    {icon:'moto',type:'active',title:'Conductor en camino',desc:'A 1.2 km — llegará en ~3 min',time:'2:16 PM'},
+    {icon:'pin',type:'pending',title:'Recogerte',desc:'Esperando confirmación',time:'—'},
+    {icon:'flag',type:'pending',title:'Destino',desc:'Universidad de Cundinamarca',time:'—'}
+  ]},
+  'MTB-2024-087': {status:'searching', events:[
+    {icon:'check',type:'done',title:'Solicitud recibida',desc:'Viaje solicitado',time:'Hace 1 min'},
+    {icon:'search',type:'active',title:'Buscando conductor',desc:'Asignando el más cercano...',time:'En proceso'},
+    {icon:'moto',type:'pending',title:'Conductor asignado',desc:'Pendiente',time:'—'},
+    {icon:'pin',type:'pending',title:'Recogida',desc:'Pendiente',time:'—'},
+    {icon:'flag',type:'pending',title:'Destino',desc:'Pendiente',time:'—'}
+  ]}
+};
+var icons = {
+  check:'<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>',
+  moto:'<svg viewBox="0 0 24 24"><path d="M19 10h-2l-1-3H8L7 10H5a1 1 0 000 2h.5l.5 5h12l.5-5h.5a1 1 0 000-2z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>',
+  flag:'<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>',
+  search:'<svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>'
+};
+function trackTrip() {
+  var code = document.getElementById('track-code').value.trim().toUpperCase();
+  var result = document.getElementById('track-result');
+  var timeline = document.getElementById('track-timeline');
+  if (!tripData[code]) {
+    showToast('Código no encontrado. Prueba: MTB-2024-001');
+    return;
+  }
+  var trip = tripData[code];
+  var html = '';
+  trip.events.forEach(function(ev) {
+    html += '<div class="mu-track-event">';
+    html += '<div class="mu-track-icon ' + ev.type + '">' + (icons[ev.icon] || icons.check) + '</div>';
+    html += '<div class="mu-track-info"><h4>' + ev.title + '</h4><p>' + ev.desc + '</p><div class="time">' + ev.time + '</div></div>';
+    html += '</div>';
+  });
+  timeline.innerHTML = html;
+  result.classList.add('show');
+}
+
+// ===== DRIVER SIGNUP =====
+function submitDriverForm() {
+  var name = document.getElementById('ds-name').value.trim();
+  var phone = document.getElementById('ds-phone').value.trim();
+  if (!name || !phone) { showToast('Por favor completa nombre y teléfono'); return; }
+  document.getElementById('ds-form-content').style.display = 'none';
+  document.getElementById('ds-success').style.display = 'block';
+  showToast('¡Solicitud enviada! Te contactaremos pronto');
+}
+
+// ===== REVIEWS =====
+function likeReview(e, btn) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  if (!btn) return;
+  if (btn.classList.contains('liked')) return;
+  btn.classList.add('liked');
+  var span = btn.nextElementSibling;
+  if (span) span.textContent = parseInt(span.textContent) + 1;
+  showToast('¡Gracias por tu voto!');
+}
+
+// ===== TOAST =====
+var toastTimer;
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 3200);
 }
 </script>
 </body>
 </html>
- 
