@@ -1,1 +1,0 @@
-# proyecto-colaborativo-equipo1
