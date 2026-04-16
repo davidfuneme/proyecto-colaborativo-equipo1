@@ -1,0 +1,72 @@
+const express = require("express");
+const mysql = require("mysql2");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// 🔹 Conexión a MySQL
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "", // ← si tienes contraseña en MySQL ponla aquí
+    database: "bfndujsmfwyxaachrok2"
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error("Error de conexión:", err);
+    } else {
+        console.log("Conectado a MySQL");
+    }
+});
+
+// ==========================
+//          CRUD
+// ==========================
+
+// 🔹 READ
+app.get("/backend", (req, res) => {
+    db.query("SELECT * FROM backend", (err, result) => {
+        if (err) return res.json(err);
+        res.json(result);
+    });
+});
+
+// 🔹 CREATE
+app.post("/backend", (req, res) => {
+    const { usuario, nombre, it } = req.body;
+
+    const sql = "INSERT INTO backend (usuario, nombre, `i.t`) VALUES (?, ?, ?)";
+    db.query(sql, [usuario, nombre, it], (err, result) => {
+        if (err) return res.json(err);
+        res.json({ mensaje: "Registro creado correctamente" });
+    });
+});
+
+// 🔹 UPDATE
+app.put("/backend/:id", (req, res) => {
+    const { id } = req.params;
+    const { usuario, nombre, it } = req.body;
+
+    const sql = "UPDATE backend SET usuario=?, nombre=?, `i.t`=? WHERE id=?";
+    db.query(sql, [usuario, nombre, it, id], (err, result) => {
+        if (err) return res.json(err);
+        res.json({ mensaje: "Registro actualizado" });
+    });
+});
+
+// 🔹 DELETE
+app.delete("/backend/:id", (req, res) => {
+    const { id } = req.params;
+
+    db.query("DELETE FROM backend WHERE id=?", [id], (err, result) => {
+        if (err) return res.json(err);
+        res.json({ mensaje: "Registro eliminado" });
+    });
+});
+
+app.listen(3000, () => {
+    console.log("Servidor corriendo en puerto 3000");
+});

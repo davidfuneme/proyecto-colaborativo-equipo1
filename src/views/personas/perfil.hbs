@@ -1,0 +1,96 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card text-center mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="text-uppercase">Mi Perfil</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr><th>Nombre</th><td>{{persona.nombre}}</td></tr>
+                        <tr><th>Apellido</th><td>{{persona.lastname}}</td></tr>
+                        <tr><th>Edad</th><td>{{persona.age}}</td></tr>
+                        <tr><th>Email</th><td>{{persona.email}}</td></tr>
+                    </table>
+                    <a href="/edit/{{persona.id}}" class="btn btn-warning">Editar mis datos</a>
+                    <a href="/" class="btn btn-secondary ms-2">Cerrar Sesión</a>
+                </div>
+            </div>
+ 
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="text-uppercase text-center">Agendar Cita</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/cita/{{persona.id}}" method="post">
+                        <div class="input-group mt-2">
+                            <label for="tipo" class="input-group-text">Tipo de cita</label>
+                            <select class="form-control" name="tipo" id="tipo" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Consulta general">Consulta general</option>
+                                <option value="Urgencias">Urgencias</option>
+                                <option value="Odontología">Odontología</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                                <option value="Pediatría">Pediatría</option>
+                            </select>
+                        </div>
+                        <div class="input-group mt-2">
+                            <label for="fecha" class="input-group-text">Fecha</label>
+                            <input class="form-control" type="date" name="fecha" id="fecha" required>
+                        </div>
+                        <div class="input-group mt-2">
+                            <label for="hora" class="input-group-text">Hora</label>
+                            <input class="form-control" type="time" name="hora" id="hora" required>
+                        </div>
+                        <div class="input-group mt-2">
+                            <label for="lugar" class="input-group-text">Lugar</label>
+                            <select class="form-control" name="lugar" id="lugar" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Piso 1 - Consultorios">Piso 1 - Consultorios</option>
+                                <option value="Piso 2 - Urgencias">Piso 2 - Urgencias</option>
+                                <option value="Piso 3 - Laboratorio">Piso 3 - Laboratorio</option>
+                                <option value="Piso 4 - Odontología">Piso 4 - Odontología</option>
+                            </select>
+                        </div>
+                        <div class="form-group mt-4 d-grid gap-2">
+                            <button class="btn btn-success">AGENDAR CITA</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="text-uppercase text-center">Mis Citas</h3>
+                </div>
+                <div class="card-body">
+                    {{#if citas.length}}
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Lugar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each citas}}
+                            <tr>
+                                <td>{{tipo}}</td>
+                                <td>{{fecha}}</td>
+                                <td>{{hora}}</td>
+                                <td>{{lugar}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    {{else}}
+                    <p class="text-center">No tienes citas agendadas aún.</p>
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
